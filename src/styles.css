@@ -1,0 +1,135 @@
+@font-face {
+  font-family: "ArialBold";
+  src: url("../assets/fonts/ArialBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../assets/fonts/Helvetica.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Helvetica-Bold";
+  src: url("../assets/fonts/Helvetica-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "helvetica-light";
+  src: url("../assets/fonts/helvetica-light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "times-new-roman";
+  src: url("../assets/fonts/times-new-roman.woff") format("woff");
+}
+
+html {
+}
+
+body {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: 4.16vw;
+  padding: 16px;
+  margin: 16px;
+  border: #000000 1px solid;
+  width: calc(100vw - 2em);
+  height: calc(100vh - 2em);
+  box-sizing: border-box;
+}
+
+.topPadding {
+  grid-row: 1;
+}
+
+.videoContainer {
+  grid-column-start: 2;
+  grid-column-end: 12;
+  grid-row-start: 2;
+  grid-row-end: 8;
+  overflow: hidden;
+  position: relative;
+  height: 44.5vw;
+}
+
+.landingVideo {
+  width: 100%;
+  filter: blur(10px) brightness(70%);
+}
+
+.title {
+  grid-column-start: 6;
+  grid-column-end: 8;
+  grid-row: 7;
+  justify-self: center;
+  align-self: start;
+  margin: 0;
+  color: #ffffff;
+  mix-blend-mode: difference;
+  z-index: 99;
+  text-transform: uppercase;
+  font-size: 1.8vw;
+  font-family: Helvetica, sans-serif;
+}
+
+.subtitle {
+  grid-column-start: 6;
+  grid-column-end: 8;
+  grid-row: 7;
+  justify-self: center;
+  align-self: end;
+  color: #ffffff;
+  mix-blend-mode: difference;
+  z-index: 99;
+  font-size: 0.8vw;
+  font-family: times-new-roman, serif;
+}
+
+nav {
+  grid-column: 1;
+  grid-row: 1;
+  margin-top: 2.08vw;
+}
+
+nav a {
+  font-size: 0.8em;
+  font-family: helvetica-light, sans-serif;
+  text-transform: uppercase;
+}
+
+nav tr {
+  height: 2em;
+}
+
+body > a {
+  font-size: 0.8em;
+  font-family: helvetica-light, sans-serif;
+  text-transform: uppercase;
+  position: absolute;
+  border: #000000 1px solid;
+  padding: 0.5em;
+}
+
+body > a.projects {
+  top: 16px;
+  left: 16px;
+}
+
+body > a.about {
+  top: 16px;
+  right: 16px;
+}
+
+body > a.contact {
+  left: 16px;
+  bottom: 16px;
+}
+body > a.influences {
+  right: 16px;
+  bottom: 16px;
+}
+
+body > a.active {
+  color: #ffffff;
+  background-color: #000000;
+}

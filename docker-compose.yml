@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+  site:
+    image: bt-portfolio:local
+    build:
+      context: .
+    container_name: bt-portfolio
+    volumes:
+      - ./src:/app/src
+      - ./assets:/app/assets
+      - ./index.html:/app/index.html
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+    environment:
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    command: "server"
