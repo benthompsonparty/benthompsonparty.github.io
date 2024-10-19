@@ -1,0 +1,10 @@
+
+body {
+  background-color: #000000;
+}
+
+
+body > a {
+  color: #ffffff;
+}
+

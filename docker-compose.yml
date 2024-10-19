@@ -10,6 +10,7 @@ services:
       - ./src:/app/src
       - ./assets:/app/assets
       - ./index.html:/app/index.html
+      - ./influences.html:/app/influences.html
       - ./package.json:/app/package.json
       - ./package-lock.json:/app/package-lock.json
     environment:
