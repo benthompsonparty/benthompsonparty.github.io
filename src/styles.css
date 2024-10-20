@@ -113,23 +113,24 @@ body > a {
   padding: 0.5em;
   text-decoration: none;
   color: inherit;
+  z-index: 99;
 }
 
-body > a.projects {
+body > a#projectsLink {
   top: 16px;
   left: 16px;
 }
 
-body > a.about {
+body > a#aboutLink {
   top: 16px;
   right: 16px;
 }
 
-body > a.contact {
+body > a#contactLink {
   left: 16px;
   bottom: 16px;
 }
-body > a.influences {
+body > a#influencesLink {
   right: 16px;
   bottom: 16px;
 }
@@ -137,4 +138,58 @@ body > a.influences {
 body > a.active {
   color: #ffffff;
   background-color: #000000;
+}
+
+body > a.open {
+  color: #ffffff;
+  background-color: transparent;
+  opacity: 0.8;
+}
+
+body > a#aboutLink.open {
+  border-bottom: none;
+  border-left: none;
+}
+
+body > a#contactLink.open {
+  border-top: none;
+  border-right: none;
+}
+
+.hidden {
+  display: none;
+}
+
+div#about {
+  width: 25vw;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #000000;
+  backdrop-filter: blur(15px);
+}
+
+div#about > div {
+  margin: 4.16vw;
+  font-size: 0.8em;
+  font-family: helvetica-light, sans-serif;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+div#contact {
+  width: 25vw;
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: #000000;
+  backdrop-filter: blur(15px);
+}
+
+div#contact > div {
+  margin: 4.16vw;
+  font-size: 0.8em;
+  font-family: helvetica-light, sans-serif;
+  text-transform: uppercase;
+  color: #ffffff;
 }
