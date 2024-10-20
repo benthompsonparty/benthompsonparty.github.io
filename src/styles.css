@@ -30,14 +30,24 @@ html {
 body {
   display: grid;
   grid-template-columns: repeat(20, minmax(0, 1fr));
-  grid-template-rows: calc(100vh - 66px);
-  padding: 16px;
-  margin: 16px;
-  border: #000000 1px solid;
-  width: calc(100vw - 2em);
-  height: calc(100vh - 2em);
+  grid-template-rows: 100vh;
+  margin: 0;
   box-sizing: border-box;
   overflow: hidden;
+}
+
+#borderContainer {
+  padding: 20px;
+  margin: 20px;
+  border: #000000 1px solid;
+  width: calc(100vw - 82px);
+  height: calc(100vh - 82px);
+  z-index: 999;
+  pointer-events: none;
+}
+
+#borderContainer > * {
+  pointer-events: auto;
 }
 
 .videoContainer {
@@ -134,27 +144,27 @@ a.button.secondary {
   background-color: #ffffff;
 }
 
-body > .button {
+#borderContainer > .button {
   position: absolute;
 }
 
-body > a#projectsButton {
-  top: 16px;
-  left: 16px;
+#borderContainer > a#projectsButton {
+  top: 20px;
+  left: 20px;
 }
 
-body > a#aboutButton {
-  top: 16px;
-  right: 16px;
+#borderContainer > a#aboutButton {
+  top: 20px;
+  right: 20px;
 }
 
-body > a#contactButton {
-  left: 16px;
-  bottom: 16px;
+#borderContainer > a#contactButton {
+  left: 20px;
+  bottom: 20px;
 }
-body > a#influencesButton {
-  right: 16px;
-  bottom: 16px;
+#borderContainer > a#influencesButton {
+  right: 20px;
+  bottom: 20px;
 }
 
 a.button.open {
@@ -163,12 +173,12 @@ a.button.open {
   opacity: 0.8;
 }
 
-body > a#aboutButton.open {
+#borderContainer > a#aboutButton.open {
   border-bottom: none;
   border-left: none;
 }
 
-body > a#contactButton.open {
+#borderContainer > a#contactButton.open {
   border-top: none;
   border-right: none;
 }
@@ -195,12 +205,12 @@ div.popover > div {
 
 div#about {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 20px;
+  right: 20px;
 }
 
 div#contact {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
+  bottom: 20px;
+  left: 20px;
 }

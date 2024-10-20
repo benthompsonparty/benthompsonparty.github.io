@@ -62,9 +62,6 @@ div.project > div.imagery {
   height: 75vh;
 }
 
-#pangaia2 {
-}
-
 div.blurBorderImage {
   display: grid;
   grid-template-columns: subgrid;
