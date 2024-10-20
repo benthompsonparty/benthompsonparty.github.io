@@ -1,0 +1,106 @@
+p {
+  font-size: 11px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+}
+
+nav a {
+  color: #666666;
+}
+
+nav a.active {
+  color: #000000;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 11px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 700;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+div.project {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column-start: 3;
+  grid-column-end: 19;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+div.project::-webkit-scrollbar {
+  display: none;
+}
+
+div.project > div.copy {
+  grid-template-columns: subgrid;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  position: sticky;
+  top: 30%;
+  height: 20vh;
+}
+
+div.project > div.imagery {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column-start: 9;
+  grid-column-end: 17;
+  align-self: center;
+}
+#pangaia {
+  grid-row: 1;
+}
+
+#pangaia1 {
+  height: 75vh;
+}
+
+#pangaia2 {
+}
+
+div.blurBorderImage {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column-start: 1;
+  grid-column-end: 9;
+  overflow: hidden;
+}
+
+div.blurBorderImage > img:first-child {
+  grid-row: 1;
+  grid-template-columns: subgrid;
+  grid-column-start: 1;
+  grid-column-end: 9;
+  width: 100%;
+  filter: blur(40px);
+  align-self: center;
+}
+
+div.blurBorderImage > img:last-child {
+  grid-row: 1;
+  grid-template-columns: subgrid;
+  grid-column-start: 2;
+  grid-column-end: 8;
+  width: 100%;
+  z-index: 50;
+  align-self: center;
+}
+
+div.fullWidthImage {
+  grid-template-columns: subgrid;
+  grid-column-start: 1;
+  grid-column-end: 9;
+  width: 100%;
+  align-self: center;
+}
+
+div.fullWidthImage > img {
+  width: 100%;
+}

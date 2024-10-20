@@ -2,22 +2,60 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="src/styles.css" />
+  <link rel="stylesheet" href="src/projects.css" />
   <title>Ben Thompson</title>
 </head>
+
 <body>
-  <div class="videoContainer">
-    <video autoplay loop muted playsinline class="landingVideo">
-      <source src="assets/bg.mp4" />
-    </video>
-    <div class="blurOverlay"></div>
-  </div>
   <img id="logo" src="assets/BenThompsonLogo.svg" alt="ben thompson logo" />
-  <h2 class="subtitle">Digital Designer</h2>
+  <div id="pangaia" class="project">
+    <div class="copy">
+      <p>
+        “PANGAIA is a materials science company bringing problem solving
+        innovations to the world through premium lifestyle products and
+        experiences.”
+      </p>
+
+      <p>
+        <span class="subtitle">Design</span><br />
+        Digital impact report 2023/4<br />
+        Print impact report 2023/4<br />
+        Brand identity evolution for “Lab”<br />
+        Garment labelling design system<br />
+        Hang Tags<br />
+        Lab Packaging Prototype<br />
+        IA for “Rewear” (Not currently live)<br />
+      </p>
+      <p>
+        <span class="subtitle">Services</span><br />
+        Visual identity<br />
+        E-commerce design<br />
+        Data Visualisation<br />
+        UX/ UI<br />
+        Print design<br />
+        Brand design<br />
+        Packaging design
+      </p>
+    </div>
+    <div class="imagery">
+      <div id="pangaia1" class="blurBorderImage">
+        <img src="assets/pangaia/1.jpg" />
+        <img src="assets/pangaia/1.jpg" />
+      </div>
+      <div id="pangaia2" class="fullWidthImage">
+        <img src="assets/pangaia/2.jpg" />
+      </div>
+      <div id="temp" class="blurBorderImage">
+        <img src="assets/pangaia/1.jpg" />
+        <img src="assets/pangaia/1.jpg" />
+      </div>
+    </div>
+  </div>
   <nav>
     <table>
       <tbody>
         <tr>
-          <td><a href="/projects#pangaia">Pangaia</a></td>
+          <td><a href="#pangaia" class="active">Pangaia</a></td>
         </tr>
         <tr>
           <td><a href="#beggxco">Begg X Co</a></td>
@@ -46,10 +84,12 @@
       </tbody>
     </table>
   </nav>
-  <a id="projectsButton" class="button primary" href="/projects">Projects</a>
+  <a id="projectsButton" class="button primary" href="/">Projects</a>
   <a id="aboutButton" class="button secondary" href="#about">About</a>
   <a id="contactButton" class="button secondary" href="#contact">Contact</a>
-  <a id="influencesButton" class="button secondary" href="/influences">Influences</a>
+  <a id="influencesButton" class="button secondary" href="/influences"
+    >Influences</a
+  >
 
   <div id="about" class="popover hidden">
     <div>
@@ -62,7 +102,7 @@
         to befit the zeitgeist.
       </p>
       <p>
-        Services<br />E-commerce design<br />Web Design<br />Product Design<br />Art
+        Services<br />E-commerce designWeb Design<br />Product Design<br />Art
         Direction<br />Brand Design<br />Photography Direction
       </p>
     </div>
