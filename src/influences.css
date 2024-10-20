@@ -2,7 +2,7 @@ body {
   background-color: #000000;
 }
 
-body > a {
+body > .button {
   color: #ffffff;
 }
 

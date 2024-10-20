@@ -29,61 +29,66 @@ html {
 
 body {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-auto-rows: 4.16vw;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  grid-template-rows: calc(100vh - 66px);
   padding: 16px;
   margin: 16px;
   border: #000000 1px solid;
   width: calc(100vw - 2em);
   height: calc(100vh - 2em);
   box-sizing: border-box;
-}
-
-.topPadding {
-  grid-row: 1;
+  overflow: hidden;
 }
 
 .videoContainer {
-  grid-column-start: 2;
-  grid-column-end: 12;
-  grid-row-start: 2;
-  grid-row-end: 8;
+  grid-column-start: 3;
+  grid-column-end: 19;
+  grid-row: 1;
+  justify-self: center;
+  align-self: center;
   overflow: hidden;
   position: relative;
-  height: 44.5vw;
+  border-radius: 1px;
+  height: 80vh;
+  width: 100%;
+}
+
+.blurOverlay {
+  content: "";
+  backdrop-filter: blur(70px);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .landingVideo {
-  width: 100%;
-  filter: blur(10px) brightness(70%);
+  height: 100%;
 }
 
-.title {
-  grid-column-start: 6;
-  grid-column-end: 8;
-  grid-row: 7;
+#logo {
+  grid-column-start: 10;
+  grid-column-end: 12;
+  grid-row: 1;
   justify-self: center;
-  align-self: start;
-  margin: 0;
-  color: #ffffff;
-  mix-blend-mode: difference;
+  align-self: center;
   z-index: 99;
-  text-transform: uppercase;
-  font-size: 1.8vw;
-  font-family: Helvetica, sans-serif;
+  mix-blend-mode: difference;
+  width: 120%;
 }
 
 .subtitle {
-  grid-column-start: 6;
-  grid-column-end: 8;
-  grid-row: 7;
+  grid-column-start: 10;
+  grid-column-end: 12;
+  grid-row: 1;
   justify-self: center;
-  align-self: end;
+  align-self: center;
   color: #ffffff;
   mix-blend-mode: difference;
-  z-index: 99;
-  font-size: 0.8vw;
+  font-size: 12px;
   font-family: times-new-roman, serif;
+  transform: translateY(3em);
 }
 
 nav {
@@ -93,65 +98,76 @@ nav {
 }
 
 nav a {
-  font-size: 0.8em;
-  font-family: helvetica-light, sans-serif;
+  font-size: 11px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 400;
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
 }
 
-nav tr {
-  height: 2em;
+nav td {
+  padding-bottom: 12px;
 }
 
-body > a {
-  font-size: 0.8em;
-  font-family: helvetica-light, sans-serif;
+a.button {
+  font-size: 11px;
+  font-family: Helvetica, sans-serif;
   text-transform: uppercase;
-  position: absolute;
+  line-height: 11px;
   border: #000000 1px solid;
-  padding: 0.5em;
+  border-radius: 1px;
   text-decoration: none;
   color: inherit;
+  padding: 8px;
   z-index: 99;
 }
 
-body > a#projectsLink {
-  top: 16px;
-  left: 16px;
-}
-
-body > a#aboutLink {
-  top: 16px;
-  right: 16px;
-}
-
-body > a#contactLink {
-  left: 16px;
-  bottom: 16px;
-}
-body > a#influencesLink {
-  right: 16px;
-  bottom: 16px;
-}
-
-body > a.active {
+a.button.primary {
   color: #ffffff;
   background-color: #000000;
 }
 
-body > a.open {
+a.button.secondary {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+body > .button {
+  position: absolute;
+}
+
+body > a#projectsButton {
+  top: 16px;
+  left: 16px;
+}
+
+body > a#aboutButton {
+  top: 16px;
+  right: 16px;
+}
+
+body > a#contactButton {
+  left: 16px;
+  bottom: 16px;
+}
+body > a#influencesButton {
+  right: 16px;
+  bottom: 16px;
+}
+
+a.button.open {
   color: #ffffff;
   background-color: transparent;
   opacity: 0.8;
 }
 
-body > a#aboutLink.open {
+body > a#aboutButton.open {
   border-bottom: none;
   border-left: none;
 }
 
-body > a#contactLink.open {
+body > a#contactButton.open {
   border-top: none;
   border-right: none;
 }
@@ -160,36 +176,30 @@ body > a#contactLink.open {
   display: none;
 }
 
+div.popover {
+  border-radius: 1px;
+  background: rgb(18, 18, 18, 0.75);
+  backdrop-filter: blur(30px);
+}
+
+div.popover > div {
+  max-width: 264px;
+  padding: 66px;
+  color: #ffffff;
+  font-size: 11px;
+  font-family: Helvetica, sans-serif;
+  text-transform: uppercase;
+  line-height: 120%;
+}
+
 div#about {
-  width: 25vw;
   position: absolute;
   top: 16px;
   right: 16px;
-  background: #000000;
-  backdrop-filter: blur(15px);
-}
-
-div#about > div {
-  margin: 4.16vw;
-  font-size: 0.8em;
-  font-family: helvetica-light, sans-serif;
-  text-transform: uppercase;
-  color: #ffffff;
 }
 
 div#contact {
-  width: 25vw;
   position: absolute;
   bottom: 16px;
   left: 16px;
-  background: #000000;
-  backdrop-filter: blur(15px);
-}
-
-div#contact > div {
-  margin: 4.16vw;
-  font-size: 0.8em;
-  font-family: helvetica-light, sans-serif;
-  text-transform: uppercase;
-  color: #ffffff;
 }

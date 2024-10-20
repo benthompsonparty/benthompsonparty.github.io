@@ -1,43 +1,47 @@
 import { fadeIn, fadeOut } from "./utils.js";
 
 let elements = {
-  aboutLink: null,
-  contactLink: null,
+  aboutButton: null,
+  contactButton: null,
   about: null,
   contact: null,
 };
 
 const initElements = () => {
-  elements.aboutLink = document.querySelector("#aboutLink");
-  elements.contactLink = document.querySelector("#contactLink");
+  elements.aboutButton = document.querySelector("#aboutButton");
+  elements.contactButton = document.querySelector("#contactButton");
   elements.about = document.querySelector("#about");
   elements.contact = document.querySelector("#contact");
 };
 
 const onAboutClick = () => {
-  if (elements.aboutLink.classList.contains("open")) {
-    elements.aboutLink.classList.remove("open");
+  if (elements.aboutButton.classList.contains("open")) {
+    elements.aboutButton.classList.remove("open");
+    elements.aboutButton.textContent = "About";
     fadeOut(elements.about);
   } else {
-    elements.aboutLink.classList.add("open");
-    fadeIn(elements.about, 0.8);
+    elements.aboutButton.classList.add("open");
+    elements.aboutButton.textContent = "Close";
+    fadeIn(elements.about);
   }
 };
 
 const onContactClick = () => {
-  if (elements.contactLink.classList.contains("open")) {
-    elements.contactLink.classList.remove("open");
+  if (elements.contactButton.classList.contains("open")) {
+    elements.contactButton.classList.remove("open");
+    elements.contactButton.textContent = "Contact";
     fadeOut(elements.contact);
   } else {
-    elements.contactLink.classList.add("open");
-    fadeIn(elements.contact, 0.8);
+    elements.contactButton.classList.add("open");
+    elements.contactButton.textContent = "Close";
+    fadeIn(elements.contact);
   }
 };
 
 const init = () => {
   initElements();
-  elements.aboutLink.addEventListener("click", onAboutClick);
-  elements.contactLink.addEventListener("click", onContactClick);
+  elements.aboutButton.addEventListener("click", onAboutClick);
+  elements.contactButton.addEventListener("click", onContactClick);
   console.log("init complete");
 };
 

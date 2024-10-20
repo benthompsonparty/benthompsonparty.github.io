@@ -8,7 +8,7 @@ export const fadeOut = (el) => {
   })();
 };
 
-export const fadeIn = (el, targetOpacity) => {
+export const fadeIn = (el, targetOpacity = 1) => {
   el.style.opacity = 0;
   el.classList.remove("hidden");
   (function fade() {

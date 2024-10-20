@@ -5,13 +5,13 @@
   <title>Ben Thompson</title>
 </head>
 <body>
-  <div class="topPadding"></div>
   <div class="videoContainer">
     <video autoplay loop muted playsinline class="landingVideo">
-      <source src="assets/smoke.mp4" />
+      <source src="assets/bg.mp4" />
     </video>
+    <div class="blurOverlay"></div>
   </div>
-  <h1 class="title">Ben Thompson</h1>
+  <img id="logo" src="assets/BenThompsonLogo.svg" alt="ben thompson logo" />
   <h2 class="subtitle">Digital Designer</h2>
   <nav>
     <table>
@@ -46,12 +46,12 @@
       </tbody>
     </table>
   </nav>
-  <a id="projectsLink" class="active" href="/">Projects</a>
-  <a id="aboutLink" href="#about">About</a>
-  <a id="contactLink" href="#contact">Contact</a>
-  <a id="influencesLink" href="/influences">Influences</a>
+  <a id="projectsButton" class="button primary" href="/">Projects</a>
+  <a id="aboutButton" class="button secondary" href="#about">About</a>
+  <a id="contactButton" class="button secondary" href="#contact">Contact</a>
+  <a id="influencesButton" class="button secondary" href="/influences">Influences</a>
 
-  <div id="about" class="hidden">
+  <div id="about" class="popover hidden">
     <div>
       <p>
         Based in architectural design principles, I craft digital and print
@@ -68,7 +68,7 @@
     </div>
   </div>
 
-  <div id="contact" class="hidden">
+  <div id="contact" class="popover hidden">
     <div>
       <p>
         London based, with global clients. Please contact me to discuss projects
