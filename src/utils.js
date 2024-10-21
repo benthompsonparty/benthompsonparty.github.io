@@ -19,3 +19,13 @@ export const fadeIn = (el, targetOpacity = 1) => {
     }
   })();
 };
+
+export const throttle = (fn, delayMs) => {
+  let time = Date.now();
+  return function () {
+    if (time + delayMs - Date.now() < 0) {
+      fn();
+      time = Date.now();
+    }
+  };
+};

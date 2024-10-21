@@ -1,9 +1,5 @@
-p {
-  font-size: 11px;
-  font-family: Helvetica, sans-serif;
-  font-weight: 400;
-  line-height: 120%;
-  text-transform: uppercase;
+:root {
+  --title-size: 23px;
 }
 
 nav a {
@@ -13,6 +9,51 @@ nav a {
 nav a.active {
   color: #000000;
   font-weight: 700;
+  transition: all .2s;
+}
+
+body {
+  padding-top: calc(50vh - var(--title-size));
+}
+
+.projectTitle {
+  position: sticky;
+  top: 34px;
+  grid-column: 1 / -1;
+  margin-top: 0;
+  font-family: ArialBold, sans-serif;
+  line-height: 120%;
+  text-transform: uppercase;
+  font-size: var(--title-size);
+  z-index: 99;
+  mix-blend-mode: difference;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+  height: 0;
+}
+
+.projectTitle > .bt {
+  opacity: 0;
+}
+
+.projectTitle > .bt.first {
+  opacity: 1;
+}
+
+.projectTitle > .projectName {
+  display: inline-block;
+  white-space: nowrap;
+  width: 0;
+}
+
+p {
+  font-size: 11px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
 }
 
 .subtitle {
@@ -25,41 +66,37 @@ nav a.active {
 }
 
 div.project {
-  display: grid;
-  grid-template-columns: subgrid;
   grid-column-start: 3;
   grid-column-end: 19;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  scrollbar-width: none;
 }
 
-div.project::-webkit-scrollbar {
-  display: none;
+/*
+We can't use subgrid here because the main project container
+must be a block element so the position sticky works correctly.
+So here we're creating another grid with the same column widths
+as the main body grid, just fewer of them.
+*/
+div.projectContent {
+  display: grid;
+  grid-template-columns: repeat(16, calc(calc(100vw - 40px) / 20));
 }
 
-div.project > div.copy {
-  grid-template-columns: subgrid;
+div.copy {
   grid-column-start: 1;
   grid-column-end: 5;
   position: sticky;
-  top: 30%;
-  height: 20vh;
+  top: calc(50vh + var(--title-size)) ;
+  transform: translateY(calc(-50% - var(--title-size) / 2));
+  align-self: start;
+  margin-bottom: 10em;
 }
 
-div.project > div.imagery {
+div.imagery {
   display: grid;
   grid-template-columns: subgrid;
   grid-column-start: 9;
   grid-column-end: 17;
-  align-self: center;
-}
-#pangaia {
-  grid-row: 1;
-}
-
-#pangaia1 {
-  height: 75vh;
+  transform: translateY(calc(-50vh - var(--title-size) / 2));
 }
 
 div.blurBorderImage {
@@ -82,7 +119,6 @@ div.blurBorderImage > img:first-child {
 
 div.blurBorderImage > img:last-child {
   grid-row: 1;
-  grid-template-columns: subgrid;
   grid-column-start: 2;
   grid-column-end: 8;
   width: 100%;
@@ -91,7 +127,6 @@ div.blurBorderImage > img:last-child {
 }
 
 div.fullWidthImage {
-  grid-template-columns: subgrid;
   grid-column-start: 1;
   grid-column-end: 9;
   width: 100%;
@@ -99,5 +134,19 @@ div.fullWidthImage {
 }
 
 div.fullWidthImage > img {
+  width: 100%;
+  display:block;
+}
+
+div.videoWithBackgroundImage {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 9;
+  overflow: hidden;
+}
+
+div.videoWithBackgroundImage > video {
+  grid-column-start: 1;
+  grid-column-end: 9;
   width: 100%;
 }
