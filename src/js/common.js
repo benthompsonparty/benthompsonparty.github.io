@@ -1,4 +1,4 @@
-import { fadeIn, fadeOut, throttle } from "./utils.js";
+import { fadeIn, fadeOut } from "./utils.js";
 
 let elements = {
   aboutButton: null,
@@ -39,32 +39,10 @@ const onContactClick = () => {
   }
 };
 
-const onScroll = () => {
-  const projects = [...document.querySelectorAll("article")];
-  const distancesToCenterOfViewport = projects.map((element) => {
-    const { top } = element.getBoundingClientRect();
-    return Math.abs(top - window.innerHeight / 2);
-  });
-  const closestDistance = Math.min(...distancesToCenterOfViewport);
-  const indexOfClosestElement =
-    distancesToCenterOfViewport.indexOf(closestDistance);
-  const activeProject = projects[indexOfClosestElement];
-  const hrefOfNavElement = `#${activeProject.id}`;
-  const activeNavElement = document.querySelector(
-    `a[href='${hrefOfNavElement}']`,
-  );
-  const allNavElements = [...document.querySelectorAll("nav a")];
-  allNavElements.forEach((element) => element.classList.remove("active"));
-  activeNavElement.classList.add("active");
-};
 
-const init = () => {
+document.addEventListener("DOMContentLoaded", () => {
   initElements();
   elements.aboutButton.addEventListener("click", onAboutClick);
   elements.contactButton.addEventListener("click", onContactClick);
-  document.addEventListener("scroll", throttle(onScroll, 100));
-  onScroll(); // Call once to set initial value
-  console.log("init complete");
-};
-
-document.addEventListener("DOMContentLoaded", init);
+  console.debug("common init complete");
+});
