@@ -40,7 +40,7 @@ const onContactClick = () => {
 };
 
 const onScroll = () => {
-  const projects = [...document.querySelectorAll(".project")];
+  const projects = [...document.querySelectorAll("article")];
   const distancesToCenterOfViewport = projects.map((element) => {
     const { top } = element.getBoundingClientRect();
     return Math.abs(top - window.innerHeight / 2);

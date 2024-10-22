@@ -65,7 +65,7 @@ p {
   color: #000000;
 }
 
-div.project {
+article {
   grid-column-start: 3;
   grid-column-end: 19;
 }
@@ -76,12 +76,12 @@ must be a block element so the position sticky works correctly.
 So here we're creating another grid with the same column widths
 as the main body grid, just fewer of them.
 */
-div.projectContent {
+article div.projectContent {
   display: grid;
   grid-template-columns: repeat(16, calc(calc(100vw - 40px) / 20));
 }
 
-div.copy {
+article div.copy {
   grid-column-start: 1;
   grid-column-end: 5;
   position: sticky;
@@ -91,7 +91,7 @@ div.copy {
   margin-bottom: 10em;
 }
 
-div.imagery {
+article div.imagery {
   display: grid;
   grid-template-columns: subgrid;
   grid-column-start: 9;
