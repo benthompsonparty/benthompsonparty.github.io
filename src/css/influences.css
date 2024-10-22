@@ -1,7 +1,8 @@
 body {
   background-color: #000000;
   margin: 20px;
-  min-height: calc(100vh - 40px)
+  min-height: calc(100vh - 40px);
+  grid-template-rows: 1fr;
 }
 
 body > .button {
@@ -14,4 +15,65 @@ div#about {
 
 div#contact {
   background: #111111;
+}
+
+div#cloud {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+  user-select: none;
+}
+
+div#cloud > * {
+  width: 100%;
+  align-self: center;
+  position: relative;
+  cursor: grab;
+  transition:
+    opacity,
+    box-shadow 0.3s ease-in-out;
+}
+
+.dragging {
+  opacity: 0.8;
+  box-shadow: 0 0 30px 10px #666666;
+}
+
+p {
+  font-size: 11px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+p#topHeading {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: center;
+  margin-top: 5em;
+  z-index: 99;
+}
+
+p#influences {
+  grid-column: 5 / -5;
+  grid-row: 1;
+  align-self: end;
+  justify-self: center;
+  margin-bottom: 5em;
+  text-align: center;
+  z-index: 99;
+}
+
+p#influences span {
+  white-space: nowrap;
+
+  &:not(:last-child):after {
+    content: " . ";
+  }
 }
