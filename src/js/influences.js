@@ -63,6 +63,15 @@ const initDraggableElement = (element) => {
   element.ondragstart = () => false;
 };
 
+const wiggleAnimations = ["wiggle1", "wiggle2", "wiggle3"];
+
+const addWiggleAnimation = (element) => {
+  const animation =
+    wiggleAnimations[Math.floor(Math.random() * wiggleAnimations.length)];
+  const duration = 15 + Math.round(Math.random() * 30);
+  element.style.animation = `${animation} ${duration}s infinite linear`;
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   const draggableElements = [...document.querySelectorAll("div#cloud > *")];
   draggableElements.forEach((element) => {
@@ -79,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Use vw and vh units for 'top' and 'left' style properties for draggable elements",
       );
     }
+    addWiggleAnimation(element);
   });
   document.ondragstart = () => false;
   console.debug("influences init complete");

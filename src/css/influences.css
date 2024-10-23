@@ -35,12 +35,13 @@ div#cloud > * {
   top: 0vh;
   left: 0vw;
   cursor: grab;
+  box-shadow: 0 0 30px 5px #222222;
   transition:
     opacity,
     box-shadow 0.3s ease-in-out;
 }
 
-.dragging {
+div#cloud > .dragging {
   opacity: 0.8;
   box-shadow: 0 0 30px 10px #666666;
 }
@@ -77,5 +78,36 @@ p#influences span {
 
   &:not(:last-child):after {
     content: " . ";
+  }
+}
+
+@keyframes wiggle1 {
+  0% {
+    transform: rotate(0deg) translateY(0.3vh) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateY(0.3vh) rotate(-360deg);
+  }
+}
+
+@keyframes wiggle2 {
+  0% {
+    transform: rotate(360deg) translateX(-0.7vw) rotate(-360deg);
+  }
+
+  100% {
+    transform: rotate(0deg) translateX(-0.7vw) rotate(0deg);
+  }
+}
+
+@keyframes wiggle3 {
+  0% {
+    transform: rotate(360deg) translateX(0.4vw) translateY(-0.1vh)
+      rotate(-360deg);
+  }
+
+  100% {
+    transform: rotate(0deg) translateX(0.4vw) translateY(-0.1vh) rotate(0deg);
   }
 }
