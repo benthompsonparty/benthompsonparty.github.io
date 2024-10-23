@@ -1,7 +1,22 @@
 let highestZ = 1000;
 
+// This requires the element to use relative positioning with
+// vw and vh units for its top and left properties. We update these
+// properties to move the elements from their original positions
+// because it handles subsequent viewport changes better than
+// using pixel offsets. It also leaves the transform property
+// available for other uses.
 const initDraggableElement = (element) => {
   const onMouseMove = (event) => {
+    let vw = Math.max(
+      document.documentElement.clientWidth || 0,
+      window.innerWidth || 0,
+    );
+    let vh = Math.max(
+      document.documentElement.clientHeight || 0,
+      window.innerHeight || 0,
+    );
+
     let moveX = event.movementX;
     let moveY = event.movementY;
 
@@ -14,32 +29,34 @@ const initDraggableElement = (element) => {
     } = container.getBoundingClientRect();
     const { top, bottom, left, right } = element.getBoundingClientRect();
 
-    let tx = parseInt(element.dataset.tx) || 0;
-    let ty = parseInt(element.dataset.ty) || 0;
+    const relativePositionTop = parseFloat(element.style.top || "0vh");
+    const relativePositionLeft = parseFloat(element.style.left || "0vw");
+
+    let relativePositionTopPx = (relativePositionTop / 100) * vh;
+    let relativePositionLeftPx = (relativePositionLeft / 100) * vw;
 
     // Only update the transforms if the element would remain
     // within its container.
     if (top + moveY >= cTop && bottom + moveY <= cBottom) {
-      ty = ty + moveY;
+      relativePositionTopPx = relativePositionTopPx + moveY;
     }
 
     if (left + moveX >= cLeft && right + moveX <= cRight) {
-      tx = tx + moveX;
+      relativePositionLeftPx = relativePositionLeftPx + moveX;
     }
 
-    element.style.transform = `translate(${tx}px, ${ty}px)`;
-    element.dataset.tx = tx;
-    element.dataset.ty = ty;
+    element.style.top = `${(relativePositionTopPx / vh) * 100}vh`;
+    element.style.left = `${(relativePositionLeftPx / vw) * 100}vw`;
   };
 
   element.onmousedown = () => {
     highestZ += 1;
     element.style.zIndex = highestZ;
-    element.classList.add("dragging")
+    element.classList.add("dragging");
     document.addEventListener("mousemove", onMouseMove);
     document.addEventListener("mouseup", () => {
       document.removeEventListener("mousemove", onMouseMove);
-      element.classList.remove("dragging")
+      element.classList.remove("dragging");
     });
   };
 
@@ -48,7 +65,21 @@ const initDraggableElement = (element) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const draggableElements = [...document.querySelectorAll("div#cloud > *")];
-  draggableElements.forEach(initDraggableElement);
+  draggableElements.forEach((element) => {
+    const top = element.style.top || "0vh";
+    const left = element.style.left || "0vw";
+
+    if (
+      top.substring(top.length - 2) === "vh" &&
+      left.substring(left.length - 2) === "vw"
+    ) {
+      initDraggableElement(element);
+    } else {
+      console.error(
+        "Use vw and vh units for 'top' and 'left' style properties for draggable elements",
+      );
+    }
+  });
   document.ondragstart = () => false;
   console.debug("influences init complete");
 });

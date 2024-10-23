@@ -32,6 +32,8 @@ div#cloud > * {
   width: 100%;
   align-self: center;
   position: relative;
+  top: 0vh;
+  left: 0vw;
   cursor: grab;
   transition:
     opacity,
