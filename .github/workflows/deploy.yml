@@ -22,12 +22,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Make src directory
+        run: mkdir site
+      - name: Compile site assets
+        run: |
+          mv *.html ./site
+          mv *.ico ./site
+          mv ./src ./site
+          mv ./assets ./site
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: '.'
+          path: "./site"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
