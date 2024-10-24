@@ -128,6 +128,7 @@ div.blurBorderImage > img:first-child {
   height: 100%;
   filter: blur(40px);
   align-self: center;
+  transform: scale(120%);
 }
 
 div.blurBorderImage > img:last-child {
