@@ -28,6 +28,8 @@ jobs:
         run: |
           mv *.html ./site
           mv *.ico ./site
+          mv *.png ./site
+          mv *.webmanifest ./site
           mv ./src ./site
           mv ./assets ./site
       - name: Setup Pages

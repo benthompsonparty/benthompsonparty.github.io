@@ -14,6 +14,10 @@ services:
       - ./projects.html:/app/projects.html
       - ./package.json:/app/package.json
       - ./package-lock.json:/app/package-lock.json
+      - ./favicon.ico:/app/favicon.ico
+      - ./favicon-16x16.png:/app/favicon-16x16.png
+      - ./favicon-32x32.png:/app/favicon-32x32.png
+      - ./site.webmanifest:/app/site.webmanifest
     environment:
       - PORT=8080
     ports:
