@@ -1,7 +1,3 @@
-:root {
-  --title-size: 23px;
-}
-
 nav a {
   color: #666666;
 }
@@ -14,6 +10,8 @@ nav a.active {
 
 body {
   padding-top: calc(50vh - var(--title-size));
+  grid-template-rows: unset;
+  height: unset;
 }
 
 .projectTitle {
