@@ -69,6 +69,19 @@ p {
   color: #000000;
 }
 
+span.caption {
+  font-size: 12px;
+  font-family: times-new-roman, serif;
+  mix-blend-mode: difference;
+  color: #ffffff;
+  grid-column: 1 / -1;
+  justify-self: right;
+  position: relative;
+  bottom: 30px;
+  right: 20px;
+  height: 0;
+}
+
 article {
   grid-column-start: 3;
   grid-column-end: 19;
