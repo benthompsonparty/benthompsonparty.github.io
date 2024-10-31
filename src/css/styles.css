@@ -23,6 +23,11 @@
   src: url("../../assets/fonts/times-new-roman.woff") format("woff");
 }
 
+@font-face {
+  font-family: "SF-Compact-Display-Regular";
+  src: url("../../assets/fonts/SF-Compact-Display-Regular.woff") format("woff");
+}
+
 :root {
   --title-size: 23px;
 }
@@ -44,6 +49,7 @@ body {
 
   &:after {
     border: 1px solid #000;
+    border-radius: 1px;
     bottom: 20px;
     content: "";
     left: 20px;
@@ -112,7 +118,6 @@ h2 {
   height: 100%;
 }
 
-
 nav {
   position: fixed;
   top: 80px;
@@ -123,7 +128,7 @@ nav {
   z-index: 10;
 }
 
-nav a {
+a {
   font-size: 11px;
   font-family: Helvetica, sans-serif;
   font-weight: 400;
@@ -131,6 +136,14 @@ nav a {
   text-decoration: none;
   color: inherit;
 }
+
+a.arrowLink {
+  &:after {
+    content: " \2197";
+    font-family: SF-Compact-Display-Regular, sans-serif;
+  }
+}
+
 
 a.button {
   font-size: 11px;

@@ -3,8 +3,8 @@ import { throttle } from "./utils.js";
 const onScroll = () => {
   const projects = [...document.querySelectorAll("article")];
   const distancesToCenterOfViewport = projects.map((element) => {
-    const { top } = element.getBoundingClientRect();
-    return Math.abs(top - window.innerHeight / 2);
+    const { top, height } = element.getBoundingClientRect();
+    return Math.abs(top + height / 2 - window.innerHeight / 2);
   });
   const closestDistance = Math.min(...distancesToCenterOfViewport);
   const indexOfClosestElement =

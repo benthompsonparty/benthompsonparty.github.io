@@ -28,7 +28,7 @@ body {
   color: #ffffff;
   display: flex;
   justify-content: center;
-  margin-bottom: 0;
+  margin-bottom: 4em;
   height: 3em;
   grid-row: 1;
 }
@@ -39,6 +39,7 @@ body {
 
 .projectTitle.first {
   height: 0;
+  margin-bottom: 0;
 }
 
 .projectTitle.first > .bt {
@@ -92,7 +93,7 @@ article div.copy {
   top: calc(50vh + var(--title-size));
   transform: translateY(calc(-50% - var(--title-size)));
   align-self: start;
-  margin-bottom: 10em;
+  margin-bottom: 50em;
 }
 
 article div.imagery {
@@ -105,7 +106,7 @@ article div.imagery {
 }
 
 article div.imagery > div {
-  height: 77vh;
+  max-height: 77vh;
   overflow: hidden;
 }
 
@@ -116,20 +117,20 @@ div.blurBorderImage {
   grid-column-end: 9;
   overflow: hidden;
   align-items: center;
+  justify-items: center;
 }
 
-div.blurBorderImage > img:first-child {
+div.blurBorderImage > :first-child {
   grid-row: 1;
-  grid-template-columns: subgrid;
   grid-column-start: 1;
   grid-column-end: 9;
-  height: 100%;
   filter: blur(40px);
   align-self: center;
   transform: scale(120%);
+  max-height: 77vh;
 }
 
-div.blurBorderImage > img:last-child {
+div.blurBorderImage > :last-child {
   grid-row: 1;
   grid-column-start: 2;
   grid-column-end: 8;
@@ -154,10 +155,11 @@ div.fullWidthImage {
   grid-column-start: 1;
   grid-column-end: 9;
   width: 100%;
-  align-self: center;
+  display: flex;
+  align-items: center;
 }
 
-div.fullWidthImage > img {
+div.fullWidthImage > * {
   width: 100%;
 }
 
