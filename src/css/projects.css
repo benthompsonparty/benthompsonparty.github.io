@@ -134,6 +134,7 @@ article div.imagery {
   grid-column-end: 17;
   grid-row: 1;
   transform: translateY(calc(-50vh));
+  cursor: grab;
 }
 
 article div.imagery > div {
