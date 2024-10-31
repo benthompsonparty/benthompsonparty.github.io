@@ -70,16 +70,34 @@ p {
 }
 
 span.caption {
-  font-size: 12px;
+  font-size: var(--body-text-size);
   font-family: times-new-roman, serif;
   mix-blend-mode: difference;
-  color: #ffffff;
   grid-column: 1 / -1;
   justify-self: right;
   position: relative;
-  bottom: 30px;
-  right: 20px;
-  height: 0;
+  bottom: calc(var(--caption-overhang-y) + var(--body-text-size) / 2);
+  right: calc(var(--caption-overhang-x) * -1);
+  margin-bottom: calc(var(--caption-overhang-y) * -1);
+
+  /* This is a massive hack to support the mix blend mode
+   which doesn't work with relative positioning. So we use
+   a linear gradient to colour the bit of text that overhangs
+   solid black which is what it would be anyway on the white
+   background. Only works on the white background.
+   */
+  background-image: linear-gradient(
+    to left,
+    #000000 var(--caption-overhang-x),
+    #ffffff var(--caption-overhang-x)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100%;
+  background-repeat: repeat;
+
+  z-index: 99999;
 }
 
 article {

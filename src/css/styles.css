@@ -30,6 +30,9 @@
 
 :root {
   --title-size: 23px;
+  --body-text-size: 12px;
+  --caption-overhang-x: 16px;
+  --caption-overhang-y: 20px;
 }
 
 html {
