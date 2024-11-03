@@ -33,6 +33,7 @@
   --body-text-size: 12px;
   --caption-overhang-x: 16px;
   --caption-overhang-y: 20px;
+  --hero-button-height: 29px;
 }
 
 html {

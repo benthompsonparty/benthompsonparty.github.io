@@ -1,0 +1,45 @@
+<svg width="88" height="29" viewBox="0 0 88 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="dot" d="M14 17.373C12.3682 17.373 11.0117 16.0166 11.0117 14.3848C11.0117 12.75 12.3652 11.3965 13.9971 11.3965C15.6318 11.3965 16.9883 12.75 16.9883 14.3848C16.9883 16.0166 15.6348 17.373 14 17.373Z" fill="currentColor"/>
+    <path d="M23.9395 10.1099L26.2061 16.8291L28.4458 10.1099H29.6436L26.7646 18H25.6313L22.7578 10.1099H23.9395ZM30.895 10.1099H31.9746V18H30.895V10.1099ZM33.8169 10.1099H39.5693V11.0767H34.8589V13.4722H39.2148V14.3853H34.8589V17.0601H39.6499V18H33.8169V10.1099ZM41.5728 10.1099L43.0605 16.5283L44.8438 10.1099H46.0039L47.7871 16.5283L49.2749 10.1099H50.4458L48.3726 18H47.25L45.4292 11.458L43.5977 18H42.4751L40.4126 10.1099H41.5728ZM54.501 10.1099H55.5698V17.0601H59.5659V18H54.501V10.1099ZM60.8657 10.1099H61.9453V18H60.8657V10.1099ZM64.3086 10.1099L66.5752 16.8291L68.8149 10.1099H70.0127L67.1338 18H66.0005L63.127 10.1099H64.3086ZM71.1245 10.1099H76.877V11.0767H72.1665V13.4722H76.5225V14.3853H72.1665V17.0601H76.9575V18H71.1245V10.1099Z" fill="currentColor"/>
+    <path class="edge" d="M1 28H9" stroke="currentColor" stroke-linecap="round"/>
+    <path class="edge" d="M1 28L1 20" stroke="currentColor" stroke-linecap="round"/>
+    <path class="edge" d="M87 28L79 28" stroke="currentColor" stroke-linecap="round"/>
+    <path class="edge" d="M87 28L87 20" stroke="currentColor" stroke-linecap="round"/>
+    <path class="edge" d="M1 1L1 9" stroke="currentColor" stroke-linecap="round"/>
+    <path class="edge" d="M1 1H9" stroke="currentColor" stroke-linecap="round"/>
+    <path class="edge" d="M87 1L79 0.999999" stroke="currentColor" stroke-linecap="round"/>
+    <path class="edge" d="M87 1L87 9" stroke="currentColor" stroke-linecap="round"/>
+    <style>
+        .edge {
+          stroke-dasharray: 2 10;
+          animation: bounce 5s ease-in-out forwards infinite;
+        }
+
+        .dot {
+          animation: fadeInOut 1s ease-in-out alternate-reverse infinite;
+
+        }
+
+        @keyframes bounce {
+          0% {
+            stroke-dasharray: 2 10;
+          }
+
+          20% {
+            stroke-dasharray: 10 10;
+          }
+
+          40% {
+            stroke-dasharray: 2 10;
+          }
+          100% {
+            stroke-dasharray: 2 10;
+          }
+        }
+
+        @keyframes fadeInOut {
+            to {
+              opacity: 0
+            }
+    </style>
+</svg>

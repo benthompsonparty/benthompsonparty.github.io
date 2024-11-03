@@ -217,3 +217,15 @@ div.videoWithBackgroundImage > video {
   grid-column-end: 9;
   width: 100%;
 }
+
+.heroButton {
+  background-blend-mode: difference;
+  position: relative;
+  bottom: 3em;
+}
+
+.heroButton img {
+  margin-bottom: calc(var(--hero-button-height) * -1);
+  mix-blend-mode: difference;
+  color: #ffffff;
+}
