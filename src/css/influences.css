@@ -90,32 +90,32 @@ p#influences span {
 
 @keyframes wiggle1 {
   0% {
-    transform: rotate(0deg) translateY(0.3vh) rotate(0deg);
+    transform: rotate(0deg) translateY(0.6vh) rotate(0deg);
   }
 
   100% {
-    transform: rotate(360deg) translateY(0.3vh) rotate(-360deg);
+    transform: rotate(360deg) translateY(0.6vh) rotate(-360deg);
   }
 }
 
 @keyframes wiggle2 {
   0% {
-    transform: rotate(360deg) translateX(-0.7vw) rotate(-360deg);
+    transform: rotate(360deg) translateX(-1.4vw) rotate(-360deg);
   }
 
   100% {
-    transform: rotate(0deg) translateX(-0.7vw) rotate(0deg);
+    transform: rotate(0deg) translateX(-1.4vw) rotate(0deg);
   }
 }
 
 @keyframes wiggle3 {
   0% {
-    transform: rotate(360deg) translateX(0.4vw) translateY(-0.1vh)
+    transform: rotate(360deg) translateX(0.8vw) translateY(-0.2vh)
       rotate(-360deg);
   }
 
   100% {
-    transform: rotate(0deg) translateX(0.4vw) translateY(-0.1vh) rotate(0deg);
+    transform: rotate(0deg) translateX(0.8vw) translateY(-0.2vh) rotate(0deg);
   }
 }
 
