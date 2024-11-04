@@ -219,13 +219,39 @@ div.videoWithBackgroundImage > video {
 }
 
 .heroButton {
-  background-blend-mode: difference;
   position: relative;
-  bottom: 3em;
+  bottom: 10px;
+  background-color: #ffffff;
+  height: var(--hero-button-height);
+  display: inline-block;
 }
 
-.heroButton img {
-  margin-bottom: calc(var(--hero-button-height) * -1);
+.heroButton svg {
   mix-blend-mode: difference;
-  color: #ffffff;
+}
+
+.heroButton svg .icon {
+  fill: #ffffff;
+  animation: fadeInOut 1s ease-in-out alternate-reverse infinite;
+}
+
+.heroButton svg .text {
+  fill: #ffffff;
+}
+
+.heroButton svg .edge {
+  stroke: #ffffff;
+  stroke-linecap: round;
+  stroke-dasharray: 2 10;
+  transition: stroke-dasharray 1s;
+}
+
+.heroButton svg:hover .edge {
+  stroke-dasharray: 10 10;
+}
+
+@keyframes fadeInOut {
+  to {
+    opacity: 0;
+  }
 }
