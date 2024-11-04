@@ -292,6 +292,8 @@ div#contact {
     padding-right: 20px;
     background: #ffffff;
     height: 100%;
+    margin-bottom: -2px;
+    z-index: 999;
 
     ::-webkit-scrollbar {
       display: none;

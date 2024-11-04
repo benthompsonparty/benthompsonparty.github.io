@@ -1,5 +1,7 @@
 let highestZ = 1000;
 
+const isMobile = window.matchMedia("(orientation: portrait)");
+
 // This requires the element to use relative positioning with
 // vw and vh units for its top and left properties. We update these
 // properties to move the elements from their original positions
@@ -82,7 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
       top.substring(top.length - 2) === "vh" &&
       left.substring(left.length - 2) === "vw"
     ) {
-      initDraggableElement(element);
+      if (!isMobile.matches) {
+        initDraggableElement(element);
+      }
     } else {
       console.error(
         "Use vw and vh units for 'top' and 'left' style properties for draggable elements",
@@ -91,5 +95,16 @@ document.addEventListener("DOMContentLoaded", () => {
     addWiggleAnimation(element);
   });
   document.ondragstart = () => false;
+
+  if (isMobile.matches) {
+    const centerImage = document.querySelector(".centerMeOnLoad");
+    const scrollToCenterImage = () =>
+      centerImage.scrollIntoView({ behavior: "smooth" });
+    centerImage.addEventListener("load", scrollToCenterImage);
+    if (centerImage.complete) {
+      scrollToCenterImage();
+    }
+  }
+
   console.debug("influences init complete");
 });
