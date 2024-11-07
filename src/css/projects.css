@@ -78,30 +78,14 @@ p {
 span.caption {
   font-size: var(--body-text-size);
   font-family: times-new-roman, serif;
+  color: #ffffff;
   mix-blend-mode: difference;
   grid-column: 1 / -1;
   justify-self: right;
   position: relative;
   bottom: calc(var(--caption-overhang-y) + var(--body-text-size) / 2);
   right: calc(var(--caption-overhang-x) * -1);
-  margin-bottom: calc(var(--caption-overhang-y) * -1);
-
-  /* This is a massive hack to support the mix blend mode
-   which doesn't when the element is overhanging its container.
-   So we use a linear gradient to colour the bit of text that
-   overhangs solid black which is what it would be anyway on the x
-   overhangs background. Only works on the white background.
-   */
-  background-image: linear-gradient(
-    to left,
-    #000000 var(--caption-overhang-x),
-    #ffffff var(--caption-overhang-x)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 100%;
-  background-repeat: repeat;
+  height: 0;
 
   z-index: 99999;
 }
@@ -393,16 +377,7 @@ div.videoWithBackgroundImage > video {
   }
 
   span.caption {
-    margin-bottom: unset;
-    background-image: unset;
-    background-clip: unset;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: unset;
-    background-size: unset;
-    background-repeat: unset;
     right: 20px;
-    color: #ffffff;
-    height: 0;
     z-index: 99;
     grid-row: 1;
     grid-column: 1 / -1;
