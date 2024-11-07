@@ -33,7 +33,7 @@ const autoScroll = () => {
   window.scrollBy(0, autoScrollPixelsPerFrame);
 };
 
-const initImageryElement = (el) => {
+const d_initImageryDragScroll = (el) => {
   let isDown = false;
   let lastJump;
 
@@ -108,8 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     articleObserver.observe(article);
   });
 
-  elements.imageryElements.forEach(initImageryElement);
-
   if (isMobile.matches) {
     elements.copyElements.forEach((copyElement) => {
       copyElement.addEventListener("click", m_onCopyClick);
@@ -119,6 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
     elements.heroButtons.forEach((heroButton) => {
       heroButton.parentElement.before(heroButton);
     });
+  } else {
+    // No need for this on mobile since the horizontal scroll works automatically
+    elements.imageryElements.forEach(d_initImageryDragScroll);
   }
 
   setInterval(autoScroll, autoScrollPeriod);
