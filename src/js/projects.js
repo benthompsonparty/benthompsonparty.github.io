@@ -1,16 +1,19 @@
-import { throttle } from "./utils.js";
 import { isMobile } from "./common.js";
 
 let elements = {
   imageryElements: null,
   copyElements: null,
   heroButtons: null,
+  articleElements: null,
+  navElements: null,
 };
 
 const initElements = () => {
   elements.copyElements = [...document.querySelectorAll("div.copy")];
   elements.imageryElements = [...document.querySelectorAll("div.imagery")];
   elements.heroButtons = [...document.querySelectorAll(".heroButton")];
+  elements.articleElements = [...document.querySelectorAll("article")];
+  elements.navElements = [...document.querySelectorAll("nav a")];
 };
 
 let isAutoScrolling = true;
@@ -67,23 +70,28 @@ const initImageryElement = (el) => {
   el.ondragstart = () => false;
 };
 
-const onScroll = () => {
-  const projects = [...document.querySelectorAll("article")];
-  const distancesToCenterOfViewport = projects.map((element) => {
-    const { top, height } = element.getBoundingClientRect();
-    return Math.abs(top + height / 2 - window.innerHeight / 2);
-  });
-  const closestDistance = Math.min(...distancesToCenterOfViewport);
-  const indexOfClosestElement =
-    distancesToCenterOfViewport.indexOf(closestDistance);
-  const activeProject = projects[indexOfClosestElement];
-  const hrefOfNavElement = `#${activeProject.id}`;
+const setActiveArticle = (articleId) => {
+  elements.navElements.forEach((element) => element.classList.remove("active"));
+  const hrefOfNavElement = `#${articleId}`;
   const activeNavElement = document.querySelector(
     `a[href='${hrefOfNavElement}']`,
   );
-  const allNavElements = [...document.querySelectorAll("nav a")];
-  allNavElements.forEach((element) => element.classList.remove("active"));
   activeNavElement.classList.add("active");
+};
+
+let articleIntersections = [];
+
+const onIntersection = (entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      articleIntersections.push(entry.target.id);
+    } else {
+      articleIntersections = articleIntersections.filter(
+        (id) => id !== entry.target.id,
+      );
+    }
+  });
+  setActiveArticle(articleIntersections[articleIntersections.length - 1]);
 };
 
 const m_onCopyClick = () => {
@@ -94,8 +102,13 @@ const m_onCopyClick = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   initElements();
-  document.addEventListener("scroll", throttle(onScroll, 100));
-  onScroll(); // Call once to set initial value
+
+  const articleObserver = new IntersectionObserver(onIntersection, {
+    rootMargin: "-30%",
+  });
+  elements.articleElements.forEach((article) => {
+    articleObserver.observe(article);
+  });
 
   elements.imageryElements.forEach(initImageryElement);
 
@@ -110,7 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  setInterval(autoScroll, autoScrollPeriod);
+  // setInterval(autoScroll, autoScrollPeriod);
   console.debug("projects init complete");
-
 });
