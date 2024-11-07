@@ -9,7 +9,6 @@ nav a.active {
 }
 
 body {
-  padding-top: calc(50vh - var(--title-size));
   grid-template-rows: unset;
   height: unset;
 }
@@ -22,9 +21,9 @@ div.content {
 
 .projectTitle {
   position: sticky;
+  margin-top: 14px;
   top: 34px;
   grid-column: 1 / -1;
-  margin-top: 0;
   font-family: ArialBold, sans-serif;
   line-height: 120%;
   text-transform: uppercase;
@@ -46,6 +45,7 @@ div.content {
 .projectTitle.first {
   height: 0;
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 .projectTitle.first > .bt {
@@ -87,10 +87,10 @@ span.caption {
   margin-bottom: calc(var(--caption-overhang-y) * -1);
 
   /* This is a massive hack to support the mix blend mode
-   which doesn't work with relative positioning. So we use
-   a linear gradient to colour the bit of text that overhangs
-   solid black which is what it would be anyway on the white
-   background. Only works on the white background.
+   which doesn't when the element is overhanging its container.
+   So we use a linear gradient to colour the bit of text that
+   overhangs solid black which is what it would be anyway on the x
+   overhangs background. Only works on the white background.
    */
   background-image: linear-gradient(
     to left,
@@ -130,6 +130,7 @@ article div.copy {
   transform: translateY(calc(-50% - var(--title-size)));
   align-self: start;
   margin-bottom: 50em;
+  background-color: #ffffff;
 }
 
 article div.imagery {
@@ -138,13 +139,20 @@ article div.imagery {
   grid-column-start: 9;
   grid-column-end: 17;
   grid-row: 1;
-  transform: translateY(calc(-50vh));
   cursor: grab;
 }
 
 article div.imagery > div {
   max-height: 77vh;
+}
+
+div.clipBox {
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  grid-row: 1;
+  grid-column-start: 1;
+  grid-column-end: 9;
 }
 
 div.blurBorderImage {
@@ -152,22 +160,18 @@ div.blurBorderImage {
   grid-template-columns: subgrid;
   grid-column-start: 1;
   grid-column-end: 9;
-  overflow: hidden;
   align-items: center;
   justify-items: center;
 }
 
-div.blurBorderImage > :first-child {
-  grid-row: 1;
-  grid-column-start: 1;
-  grid-column-end: 9;
+div.blurBorderImage > :first-child > * {
   filter: blur(40px);
   align-self: center;
   transform: scale(120%);
   max-height: 77vh;
 }
 
-div.blurBorderImage > :last-child {
+div.blurBorderImage > :nth-child(2) {
   grid-row: 1;
   grid-column-start: 2;
   grid-column-end: 8;
@@ -185,12 +189,13 @@ div.fullWidthImage {
   grid-column-start: 1;
   grid-column-end: 9;
   width: 100%;
-  display: flex;
+  display: grid;
   align-items: center;
 }
 
-div.fullWidthImage > * {
+div.fullWidthImage > :first-child {
   width: 100%;
+  grid-row: 1;
 }
 
 div.videoWithBackgroundImage {
@@ -199,13 +204,9 @@ div.videoWithBackgroundImage {
   align-items: center;
   grid-column-start: 1;
   grid-column-end: 9;
-  overflow: hidden;
 }
 
-div.videoWithBackgroundImage > img {
-  grid-row: 1;
-  grid-column-start: 1;
-  grid-column-end: 9;
+div.videoWithBackgroundImage > :first-child > * {
   width: 100%;
 }
 
@@ -217,11 +218,10 @@ div.videoWithBackgroundImage > video {
 }
 
 .heroButton {
-  position: relative;
-  bottom: 10px;
-  background-color: #ffffff;
+  padding-bottom: 10px;
   height: var(--hero-button-height);
   display: inline-block;
+  mix-blend-mode: difference;
 }
 
 .heroButton svg {
@@ -258,6 +258,7 @@ div.videoWithBackgroundImage > video {
   grid-column: 1 / -1;
   height: 120px;
   width: 100%;
+  margin-top: -20px;
 }
 
 @media screen and (orientation: portrait) {
@@ -275,11 +276,16 @@ div.videoWithBackgroundImage > video {
 
   nav {
     box-shadow: 0 -10px 20px -5px rgba(115, 115, 115, 0.5);
+    grid-row: 2;
+  }
+
+  article {
+    flex-shrink: 0;
   }
 
   .projectTitle {
-    position: relative;
-    right: -13px;
+    position: sticky;
+    left: 36px;
     top: 46px;
   }
 
@@ -292,9 +298,8 @@ div.videoWithBackgroundImage > video {
     margin-left: 0;
   }
 
-  .projectName.first {
-    position: relative;
-    right: -20px;
+  .projectTitle > .projectName {
+    width: auto;
   }
 
   div.content {
@@ -303,25 +308,42 @@ div.videoWithBackgroundImage > video {
     grid-column: 1 / -1;
     width: 100dvw;
     height: calc(100dvh - 50px - 30px - 40px);
-    overflow: scroll;
     margin-left: -20px;
+    overflow-x: scroll;
+    overflow-y: clip;
     position: relative;
   }
 
-  article {
-    display: inline-block;
+  article div.projectContent {
+    display: grid;
+    grid-template: 1fr / 1fr;
+    place-items: start;
+    height: calc(100dvh - 50px - 30px - 40px);
+    justify-content: flex-start;
+    width: 100%;
+    position: relative;
   }
 
-  article div.projectContent {
-    display: flex;
-    height: calc(100dvh - 50px - 30px - 40px);
+  article div.projectContent > * {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
+
+  div.projectContent > div.floatContainer {
+    width: calc(100dvw - 40px);
+    height: calc(100dvh - 50px - 30px - 40px - 50px);
+    position: sticky;
+    left: 20px;
+    bottom: 0;
+    flex-shrink: 0;
+    z-index: 999;
   }
 
   article div.imagery {
     transform: unset;
     display: flex;
     height: calc(100dvh - 50px - 30px - 40px - 50px);
-    width: 100%;
+    overflow: hidden;
   }
 
   article div.imagery > div {
@@ -329,9 +351,7 @@ div.videoWithBackgroundImage > video {
     width: calc(100dvw - 40px);
     flex-shrink: 0;
     overflow: hidden;
-  }
-
-  div.blurBorderImage {
+    position: relative;
     grid-template-columns: repeat(10, calc((100dvw - 40px) / 10));
   }
 
@@ -340,44 +360,85 @@ div.videoWithBackgroundImage > video {
     grid-column: 1 / -1;
   }
 
-  div.videoWithBackgroundImage > :first-child {
-    height: 100%;
-  }
-
-  div.blurBorderImage > :last-child {
+  div.blurBorderImage > :nth-child(2) {
     grid-row: 1;
-    grid-column-start: 3;
-    grid-column-end: 9;
+    grid-column-start: 2;
+    grid-column-end: 10;
     width: 100%;
     z-index: 50;
     align-self: center;
   }
 
+  div.clipBox {
+    grid-column: 1 / -1;
+  }
+
+  div.videoWithBackgroundImage > :first-child > * {
+    grid-column: 1 / -1;
+  }
+
+  div.videoWithBackgroundImage > video {
+    grid-column: 1 / -1;
+  }
+
+  div.videoWithBackgroundImage > :first-child > * {
+    height: 100%;
+  }
+
+  div.fullWidthImage > :first-child {
+    grid-column: 1 / -1;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
   span.caption {
-    display: none;
+    margin-bottom: unset;
+    background-image: unset;
+    background-clip: unset;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-size: unset;
+    background-repeat: unset;
+    right: 20px;
+    color: #ffffff;
+    height: 0;
+    z-index: 99;
+    grid-row: 1;
+    grid-column: 1 / -1;
+    justify-self: end;
+    align-self: end;
   }
 
   article div.copy {
     transform: translateY(calc(100% - 50px));
-    position: fixed;
+    transition: transform 0.5s ease-in-out;
+    position: sticky;
+    left: 20px;
     top: unset;
-    bottom: calc(20px + 30px + 50px);
-    margin-bottom: 0;
-    margin-left: 20px;
-    margin-right: 20px;
+    bottom: 0;
+    margin-bottom: unset;
+    padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    width: calc(100dvw - 80px);
-    height: 50px;
-    overflow: clip;
+    width: calc(100vw - 80px);
     background-color: #ffffff;
     z-index: 999;
+    align-self: end;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  article div.copy.open {
+    transform: none;
   }
 
   .heroButton {
-    position: fixed;
-    top: unset;
-    bottom: calc(20px + 30px + 50px + 50px);
+    position: sticky;
+    left: 40px;
+    bottom: 50px;
+    align-self: flex-end;
+    z-index: 99;
   }
 
   #tempImageryPadding {
@@ -385,6 +446,8 @@ div.videoWithBackgroundImage > video {
     width: 20px;
     height: calc(100dvh - 50px - 30px - 40px - 50px);
     object-fit: cover;
+    margin-top: 0;
+    transform: scaleX(2) translateX(-25%);
   }
 
   span.bt {

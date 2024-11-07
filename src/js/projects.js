@@ -1,4 +1,17 @@
 import { throttle } from "./utils.js";
+import { isMobile } from "./common.js";
+
+let elements = {
+  imageryElements: null,
+  copyElements: null,
+  heroButtons: null,
+};
+
+const initElements = () => {
+  elements.copyElements = [...document.querySelectorAll("div.copy")];
+  elements.imageryElements = [...document.querySelectorAll("div.imagery")];
+  elements.heroButtons = [...document.querySelectorAll(".heroButton")];
+};
 
 let isAutoScrolling = true;
 
@@ -73,12 +86,31 @@ const onScroll = () => {
   activeNavElement.classList.add("active");
 };
 
+const m_onCopyClick = () => {
+  elements.copyElements.forEach((element) => {
+    element.classList.toggle("open");
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+  initElements();
   document.addEventListener("scroll", throttle(onScroll, 100));
   onScroll(); // Call once to set initial value
 
-  [...document.querySelectorAll("div.imagery")].forEach(initImageryElement);
+  elements.imageryElements.forEach(initImageryElement);
+
+  if (isMobile.matches) {
+    elements.copyElements.forEach((copyElement) => {
+      copyElement.addEventListener("click", m_onCopyClick);
+    });
+
+    // Move the hero buttons so they blend with the right container
+    elements.heroButtons.forEach((heroButton) => {
+      heroButton.parentElement.before(heroButton);
+    });
+  }
 
   setInterval(autoScroll, autoScrollPeriod);
   console.debug("projects init complete");
+
 });

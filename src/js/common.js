@@ -18,7 +18,7 @@ const initElements = () => {
   elements.nav = document.querySelector("nav");
 };
 
-const isMobile = window.matchMedia("(orientation: portrait)");
+export const isMobile = window.matchMedia("(orientation: portrait)");
 
 const onProjectsClick = (event) => {
   if (isMobile.matches) {
