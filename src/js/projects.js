@@ -94,10 +94,8 @@ const onIntersection = (entries) => {
   setActiveArticle(articleIntersections[articleIntersections.length - 1]);
 };
 
-const m_onCopyClick = () => {
-  elements.copyElements.forEach((element) => {
-    element.classList.toggle("open");
-  });
+const m_onCopyClick = (event) => {
+  event.target.classList.toggle("open");
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -123,6 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // setInterval(autoScroll, autoScrollPeriod);
+  setInterval(autoScroll, autoScrollPeriod);
   console.debug("projects init complete");
 });

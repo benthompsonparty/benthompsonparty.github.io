@@ -117,6 +117,10 @@ article div.copy {
   background-color: #ffffff;
 }
 
+article div.copy p {
+  pointer-events: none;
+}
+
 article div.imagery {
   display: grid;
   grid-template-columns: subgrid;
