@@ -91,11 +91,79 @@ const onIntersection = (entries) => {
       );
     }
   });
-  setActiveArticle(articleIntersections[articleIntersections.length - 1]);
+  articleIntersections.length &&
+    setActiveArticle(articleIntersections[articleIntersections.length - 1]);
 };
 
 const m_onCopyClick = (event) => {
   event.target.classList.toggle("open");
+};
+
+
+
+const initInfiniteScroll = () => {
+  const firstArticle = document.querySelector("article:first-of-type");
+  const firstArticleClone = firstArticle.cloneNode(true);
+  firstArticleClone.id = "__infiniteScrollFirstClone";
+  firstArticleClone.dataset.original = firstArticle.id;
+  const lastArticle = document.querySelector("article:last-of-type");
+  const lastArticleClone = lastArticle.cloneNode(true);
+  lastArticleClone.id = "__infiniteScrollLastClone";
+  lastArticleClone.dataset.original = lastArticle.id;
+
+  firstArticle.insertAdjacentElement("beforebegin", lastArticleClone);
+  lastArticle.insertAdjacentElement("afterend", firstArticleClone);
+
+  // If the page is loading with an anchor in the URL, it automatically moves
+  // us to the right place. But if we're coming in to the plain URL we need
+  // to shift ourselves downwards by the height of the clone article we just added
+  // at the top.
+  if (!window.location.hash.length) {
+    firstArticle.scrollIntoView({
+      behavior: "instant",
+      block: "start",
+      inline: "start",
+    });
+  }
+
+  const onCloneIntersection = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target.id === lastArticleClone.id) {
+          return lastArticle.scrollIntoView({
+            behavior: "instant",
+            block: "end",
+            inline: "end",
+          });
+        }
+        if (entry.target.id === firstArticleClone.id) {
+          return firstArticle.scrollIntoView({
+            behavior: "instant",
+            block: "start",
+            inline: "start",
+          });
+        }
+      }
+    });
+  };
+
+  const topEdgeObserver = new IntersectionObserver(onCloneIntersection, {
+    rootMargin: "0px 0px -100% 0px",
+  });
+  const leftEdgeObserver = new IntersectionObserver(onCloneIntersection, {
+    rootMargin: "0px -100% 0px 0px ",
+  });
+  topEdgeObserver.observe(firstArticleClone);
+  leftEdgeObserver.observe(firstArticleClone);
+
+  const bottomEdgeObserver = new IntersectionObserver(onCloneIntersection, {
+    rootMargin: "-100% 0px 0px 0px",
+  });
+  const rightEdgeObserver = new IntersectionObserver(onCloneIntersection, {
+    rootMargin: "0px  0px 0px -100%",
+  });
+  bottomEdgeObserver.observe(lastArticleClone);
+  rightEdgeObserver.observe(lastArticleClone);
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -121,6 +189,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // No need for this on mobile since the horizontal scroll works automatically
     elements.imageryElements.forEach(d_initImageryDragScroll);
   }
+
+  initInfiniteScroll();
 
   setInterval(autoScroll, autoScrollPeriod);
   console.debug("projects init complete");

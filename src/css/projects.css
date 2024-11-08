@@ -81,7 +81,9 @@ span.caption {
   color: #ffffff;
   mix-blend-mode: difference;
   grid-column: 1 / -1;
+  grid-row: 1;
   justify-self: right;
+  align-self: end;
   position: relative;
   bottom: calc(var(--caption-overhang-y) + var(--body-text-size) / 2);
   right: calc(var(--caption-overhang-x) * -1);
@@ -131,14 +133,14 @@ article div.imagery {
 }
 
 article div.imagery > div {
-  max-height: 77vh;
+  height: 77vh;
 }
 
 div.clipBox {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  grid-row: 1;
+  grid-row: 1 / -1;
   grid-column-start: 1;
   grid-column-end: 9;
 }
@@ -159,6 +161,10 @@ div.blurBorderImage > :first-child > * {
   max-height: 77vh;
 }
 
+div.blurBorderImage > :first-child > * {
+  height: 100%;
+}
+
 div.blurBorderImage > :nth-child(2) {
   grid-row: 1;
   grid-column-start: 2;
@@ -168,15 +174,15 @@ div.blurBorderImage > :nth-child(2) {
   align-self: center;
 }
 
-div.blurBorderImage.fullWidth > img:last-child {
-  grid-column-start: 1;
-  grid-column-end: 9;
+div.blurBorderImage.fullWidth > img:nth-child(2) {
+  grid-column: 1/-1;
 }
 
 div.fullWidthImage {
   grid-column-start: 1;
   grid-column-end: 9;
   width: 100%;
+  height: 100%;
   display: grid;
   align-items: center;
 }
@@ -184,6 +190,8 @@ div.fullWidthImage {
 div.fullWidthImage > :first-child {
   width: 100%;
   grid-row: 1;
+  grid-column-start: 1;
+  grid-column-end: 9;
 }
 
 div.videoWithBackgroundImage {
@@ -269,12 +277,15 @@ div.videoWithBackgroundImage > video {
 
   article {
     flex-shrink: 0;
+    scroll-margin-left: 20px;
   }
 
   .projectTitle {
     position: sticky;
     left: 36px;
     top: 46px;
+    margin-right: 20px;
+    margin-left: 20px;
   }
 
   .projectTitle.first {
@@ -418,6 +429,8 @@ div.videoWithBackgroundImage > video {
     bottom: 50px;
     align-self: flex-end;
     z-index: 99;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   #tempImageryPadding {
