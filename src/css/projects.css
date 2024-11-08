@@ -313,6 +313,7 @@ div.videoWithBackgroundImage > video {
     overflow-x: scroll;
     overflow-y: clip;
     position: relative;
+    scrollbar-width: none;
   }
 
   article div.projectContent {
