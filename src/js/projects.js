@@ -6,6 +6,7 @@ let elements = {
   heroButtons: null,
   articleElements: null,
   navElements: null,
+  contentElement: null,
 };
 
 const initElements = () => {
@@ -14,6 +15,7 @@ const initElements = () => {
   elements.heroButtons = [...document.querySelectorAll(".heroButton")];
   elements.articleElements = [...document.querySelectorAll("article")];
   elements.navElements = [...document.querySelectorAll("nav a")];
+  elements.contentElement = document.querySelector("div.content");
 };
 
 let isAutoScrolling = true;
@@ -26,11 +28,21 @@ const autoScrollFPS = 60;
 const autoScrollPeriod = 1000 / autoScrollFPS;
 const autoScrollPixelsPerFrame = autoScrollPixelsPerSecond / autoScrollFPS;
 
-const autoScroll = () => {
+console.log(autoScrollPixelsPerFrame)
+
+const d_autoScroll = () => {
   if (!isAutoScrolling) {
     return;
   }
   window.scrollBy(0, autoScrollPixelsPerFrame);
+};
+
+const m_autoScroll = () => {
+  if (!isAutoScrolling) {
+    return;
+  }
+
+  elements.contentElement.scrollBy(Math.ceil(autoScrollPixelsPerFrame / 2), 0);
 };
 
 const d_initImageryDragScroll = (el) => {
@@ -176,6 +188,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   if (isMobile.matches) {
+    setInterval(m_autoScroll, autoScrollPeriod);
+
     elements.copyElements.forEach((copyElement) => {
       copyElement.addEventListener("click", m_onCopyClick);
     });
@@ -185,12 +199,13 @@ document.addEventListener("DOMContentLoaded", () => {
       heroButton.parentElement.before(heroButton);
     });
   } else {
+    setInterval(d_autoScroll, autoScrollPeriod);
+
     // No need for this on mobile since the horizontal scroll works automatically
     elements.imageryElements.forEach(d_initImageryDragScroll);
   }
 
   initInfiniteScroll();
 
-  setInterval(autoScroll, autoScrollPeriod);
   console.debug("projects init complete");
 });
