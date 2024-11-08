@@ -6,6 +6,7 @@ nav a.active {
   color: #000000;
   font-weight: 700;
   transition: all 0.2s;
+  scroll-margin: 20px;
 }
 
 body {

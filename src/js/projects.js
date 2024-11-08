@@ -77,6 +77,7 @@ const setActiveArticle = (articleId) => {
     `a[href='${hrefOfNavElement}']`,
   );
   activeNavElement.classList.add("active");
+  activeNavElement.scrollIntoView({ behavior: "smooth" });
 };
 
 let articleIntersections = [];
@@ -98,8 +99,6 @@ const onIntersection = (entries) => {
 const m_onCopyClick = (event) => {
   event.target.classList.toggle("open");
 };
-
-
 
 const initInfiniteScroll = () => {
   const firstArticle = document.querySelector("article:first-of-type");
