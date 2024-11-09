@@ -133,6 +133,20 @@ nav {
   flex-direction: column;
   gap: 20px;
   z-index: 10;
+  transition: color 0.25s;
+
+  &:hover {
+    color: #666666;
+  }
+}
+
+nav a {
+  transition: color 0.25s;
+
+  &:hover {
+    color: #000000;
+    font-weight: 700;
+  }
 }
 
 a {
