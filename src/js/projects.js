@@ -25,28 +25,46 @@ const initElements = () => {
 let isAutoScrolling = true;
 
 // ==== Settings ====
-const autoScrollPixelsPerSecond = 100;
-const autoScrollFPS = 60;
+const d_autoScrollPixelsPerSecond = 40;
+const m_autoScrollPixelsPerSecond = 20;
 // ==================
 
-const autoScrollPeriod = 1000 / autoScrollFPS;
-const autoScrollPixelsPerFrame = autoScrollPixelsPerSecond / autoScrollFPS;
+const _d_autoScrollPeriodMs = 1000 / d_autoScrollPixelsPerSecond;
+const _m_autoScrollPeriodMs = 1000 / m_autoScrollPixelsPerSecond;
 
-console.log(autoScrollPixelsPerFrame);
+let _autoScrollLastFrame = 0;
 
 const d_autoScroll = () => {
-  if (!isAutoScrolling) {
-    return;
-  }
-  window.scrollBy(0, autoScrollPixelsPerFrame);
+  const _d_autoScrollCb = (timestamp) => {
+    if (
+      isAutoScrolling &&
+      timestamp - _autoScrollLastFrame > _d_autoScrollPeriodMs
+    ) {
+      _autoScrollLastFrame = timestamp;
+      window.scrollBy(0, 1);
+    }
+
+    requestAnimationFrame(_d_autoScrollCb);
+  };
+
+  requestAnimationFrame(_d_autoScrollCb);
 };
 
 const m_autoScroll = () => {
-  if (!isAutoScrolling) {
-    return;
-  }
+  const _m_autoScrollCb = (timestamp) => {
+    if (!isAutoScrolling) {
+      return;
+    }
+    if (timestamp - _autoScrollLastFrame > _m_autoScrollPeriodMs) {
+      _autoScrollLastFrame = timestamp;
 
-  elements.contentElement.scrollBy(Math.ceil(autoScrollPixelsPerFrame / 2), 0);
+      elements.contentElement.scrollBy(1, 0);
+    }
+
+    requestAnimationFrame(_m_autoScrollCb);
+  };
+
+  requestAnimationFrame(_m_autoScrollCb);
 };
 
 const d_initImageryDragScroll = (el) => {
@@ -173,6 +191,14 @@ const initInfiniteScroll = () => {
   rightEdgeObserver.observe(lastArticleClone);
 };
 
+const initAutoScroll = () => {
+  if (isMobile.matches) {
+    m_autoScroll();
+  } else {
+    d_autoScroll();
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initElements();
 
@@ -184,8 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   if (isMobile.matches) {
-    setInterval(m_autoScroll, autoScrollPeriod);
-
     elements.copyElements.forEach((copyElement) => {
       copyElement.addEventListener("click", m_onCopyClick);
     });
@@ -195,8 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
       heroButton.parentElement.before(heroButton);
     });
   } else {
-    setInterval(d_autoScroll, autoScrollPeriod);
-
     // No need for this on mobile since the horizontal scroll works automatically
     elements.imageryElements.forEach(d_initImageryDragScroll);
   }
