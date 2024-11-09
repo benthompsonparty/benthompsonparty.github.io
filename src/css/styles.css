@@ -87,6 +87,9 @@ h2 {
   grid-column-end: 12;
   grid-row: 1;
   justify-self: center;
+  align-self: end;
+  position: relative;
+  bottom: 12em;
   z-index: 99;
   color: #ffffff;
   mix-blend-mode: difference;
@@ -267,6 +270,7 @@ div#contact {
     grid-row: 1;
     justify-self: unset;
     align-self: start;
+    position: unset;
   }
 
   .videoContainer {
