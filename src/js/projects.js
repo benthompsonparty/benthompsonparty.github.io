@@ -7,6 +7,8 @@ let elements = {
   articleElements: null,
   navElements: null,
   contentElement: null,
+  firstArticle: null,
+  lastArticle: null,
 };
 
 const initElements = () => {
@@ -16,6 +18,8 @@ const initElements = () => {
   elements.articleElements = [...document.querySelectorAll("article")];
   elements.navElements = [...document.querySelectorAll("nav a")];
   elements.contentElement = document.querySelector("div.content");
+  elements.firstArticle = document.querySelector("article:first-of-type");
+  elements.lastArticle = document.querySelector("article:last-of-type");
 };
 
 let isAutoScrolling = true;
@@ -28,7 +32,7 @@ const autoScrollFPS = 60;
 const autoScrollPeriod = 1000 / autoScrollFPS;
 const autoScrollPixelsPerFrame = autoScrollPixelsPerSecond / autoScrollFPS;
 
-console.log(autoScrollPixelsPerFrame)
+console.log(autoScrollPixelsPerFrame);
 
 const d_autoScroll = () => {
   if (!isAutoScrolling) {
@@ -112,51 +116,43 @@ const m_onCopyClick = (event) => {
   event.target.classList.toggle("open");
 };
 
-const initInfiniteScroll = () => {
-  const firstArticle = document.querySelector("article:first-of-type");
-  const firstArticleClone = firstArticle.cloneNode(true);
-  firstArticleClone.id = "__infiniteScrollFirstClone";
-  firstArticleClone.dataset.original = firstArticle.id;
-  const lastArticle = document.querySelector("article:last-of-type");
-  const lastArticleClone = lastArticle.cloneNode(true);
-  lastArticleClone.id = "__infiniteScrollLastClone";
-  lastArticleClone.dataset.original = lastArticle.id;
+const onCloneIntersection = (entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const clone = entry.target;
+      return elements[clone.dataset.original].scrollIntoView({
+        behavior: "instant",
+        block: clone.dataset.scrollPos,
+        inline: clone.dataset.scrollPos,
+      });
+    }
+  });
+};
 
-  firstArticle.insertAdjacentElement("beforebegin", lastArticleClone);
-  lastArticle.insertAdjacentElement("afterend", firstArticleClone);
+const initInfiniteScroll = () => {
+  const firstArticleClone = elements.firstArticle.cloneNode(true);
+  firstArticleClone.id = "__infiniteScrollFirstClone";
+  firstArticleClone.dataset.original = "firstArticle";
+  firstArticleClone.dataset.scrollPos = "start";
+  const lastArticleClone = elements.lastArticle.cloneNode(true);
+  lastArticleClone.id = "__infiniteScrollLastClone";
+  lastArticleClone.dataset.original = "lastArticle";
+  lastArticleClone.dataset.scrollPos = "end";
+
+  elements.firstArticle.insertAdjacentElement("beforebegin", lastArticleClone);
+  elements.lastArticle.insertAdjacentElement("afterend", firstArticleClone);
 
   // If the page is loading with an anchor in the URL, it automatically moves
   // us to the right place. But if we're coming in to the plain URL we need
   // to shift ourselves downwards by the height of the clone article we just added
   // at the top.
   if (!window.location.hash.length) {
-    firstArticle.scrollIntoView({
+    elements.firstArticle.scrollIntoView({
       behavior: "instant",
       block: "start",
       inline: "start",
     });
   }
-
-  const onCloneIntersection = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        if (entry.target.id === lastArticleClone.id) {
-          return lastArticle.scrollIntoView({
-            behavior: "instant",
-            block: "end",
-            inline: "end",
-          });
-        }
-        if (entry.target.id === firstArticleClone.id) {
-          return firstArticle.scrollIntoView({
-            behavior: "instant",
-            block: "start",
-            inline: "start",
-          });
-        }
-      }
-    });
-  };
 
   const topEdgeObserver = new IntersectionObserver(onCloneIntersection, {
     rootMargin: "0px 0px -100% 0px",
@@ -206,6 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   initInfiniteScroll();
+  initAutoScroll();
 
   console.debug("projects init complete");
 });
