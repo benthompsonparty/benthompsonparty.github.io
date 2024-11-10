@@ -7,6 +7,10 @@ body > .button.secondary {
   color: #ffffff;
 }
 
+h1 {
+  z-index: 999999999;
+}
+
 div#cloudContainer {
   grid-column: 1 / -1;
   grid-row: 1 / -1;
@@ -35,8 +39,8 @@ div#cloud > * {
   width: 100%;
   align-self: center;
   position: relative;
-  top: 0vh;
-  left: 0vw;
+  top: 0;
+  left: 0;
   cursor: grab;
   box-shadow: 0 0 30px 5px #222222;
   transition:
@@ -129,15 +133,13 @@ p#influences span {
   }
 
   div#cloudContainer {
-    grid-template-rows: calc(100dvh - 50px - 30px - 40px);
     overflow: scroll;
-    width: calc(100dvw - 40px);
-    height: calc(100dvh - 40px);
+    width: calc(100dvw - var(--body-padding) * 2);
+    height: calc(100dvh - var(--body-padding) * 2);
   }
 
   div#cloud {
     grid-template-columns: repeat(20, 15dvw);
-    grid-template-rows: calc(100dvh - 50px - 30px - 40px);
   }
 
   body > .button.secondary {

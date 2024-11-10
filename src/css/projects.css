@@ -16,6 +16,7 @@ nav a.active {
 body {
   grid-template-rows: unset;
   height: unset;
+  overflow: scroll;
 }
 
 div.content {
@@ -115,12 +116,14 @@ as the main body grid, just fewer of them.
 */
 article div.projectContent {
   display: grid;
-  grid-template-columns: repeat(16, calc(calc(100vw - 40px) / 20));
+  grid-template-columns: repeat(
+    16,
+    calc(calc(100vw - var(--body-padding) * 2) / 20)
+  );
 }
 
 article div.copy {
-  grid-column-start: 1;
-  grid-column-end: 5;
+  grid-column: 1 / 5;
   grid-row: 1;
   position: sticky;
   top: calc(50vh + var(--title-size));
@@ -152,15 +155,13 @@ div.clipBox {
   width: 100%;
   height: 100%;
   grid-row: 1 / -1;
-  grid-column-start: 1;
-  grid-column-end: 9;
+  grid-column: 1 / 9;
 }
 
 div.blurBorderImage {
   display: grid;
   grid-template-columns: subgrid;
-  grid-column-start: 1;
-  grid-column-end: 9;
+  grid-column: 1 / 9;
   align-items: center;
   justify-items: center;
 }
@@ -178,8 +179,7 @@ div.blurBorderImage > :first-child > * {
 
 div.blurBorderImage > :nth-child(2) {
   grid-row: 1;
-  grid-column-start: 2;
-  grid-column-end: 8;
+  grid-column: 2 / 8;
   width: 100%;
   z-index: 50;
   align-self: center;
@@ -190,8 +190,7 @@ div.blurBorderImage.fullWidth > img:nth-child(2) {
 }
 
 div.fullWidthImage {
-  grid-column-start: 1;
-  grid-column-end: 9;
+  grid-column: 1 / 9;
   width: 100%;
   height: 100%;
   display: grid;
@@ -202,16 +201,14 @@ div.fullWidthImage {
 div.fullWidthImage > :first-child {
   width: 100%;
   grid-row: 1;
-  grid-column-start: 1;
-  grid-column-end: 9;
+  grid-column: 1 / 9;
 }
 
 div.videoWithBackgroundImage {
   display: grid;
   grid-template-columns: subgrid;
   align-items: center;
-  grid-column-start: 1;
-  grid-column-end: 9;
+  grid-column: 1 / 9;
 }
 
 div.videoWithBackgroundImage > :first-child > * {
@@ -220,8 +217,7 @@ div.videoWithBackgroundImage > :first-child > * {
 
 div.videoWithBackgroundImage > video {
   grid-row: 1;
-  grid-column-start: 1;
-  grid-column-end: 9;
+  grid-column: 1 / 9;
   width: 100%;
 }
 
@@ -276,9 +272,14 @@ div.videoWithBackgroundImage > video {
 
   body {
     padding-top: 0;
-    grid-template-rows: calc(100dvh - 50px - 30px - 40px) 50px 30px;
-    width: calc(100dvw - 40px);
-    height: calc(100dvh - 40px);
+    grid-template-rows:
+      calc(
+        100dvh - var(--m-nav-height) - var(--m-buttons-height) -
+          var(--body-padding) * 2
+      )
+      var(--m-nav-height) var(--m-buttons-height);
+    width: calc(100dvw - var(--body-padding) * 2);
+    height: calc(100dvh - var(--body-padding) * 2);
     align-items: unset;
   }
 
@@ -293,8 +294,8 @@ div.videoWithBackgroundImage > video {
 
   article {
     flex-shrink: 0;
-    padding-left: 20px;
-    margin-right: -20px;
+    padding-left: var(--body-padding);
+    margin-right: calc(var(--body-padding) * -1);
   }
 
   .projectTitle {
@@ -323,8 +324,11 @@ div.videoWithBackgroundImage > video {
     grid-row: 1;
     grid-column: 1 / -1;
     width: 100dvw;
-    height: calc(100dvh - 50px - 30px - 40px);
-    margin-left: -20px;
+    height: calc(
+      100dvh - var(--m-nav-height) - var(--m-buttons-height) -
+        var(--body-padding) * 2
+    );
+    margin-left: calc(var(--body-padding) * -1);
     overflow-x: scroll;
     overflow-y: clip;
     position: relative;
@@ -335,7 +339,10 @@ div.videoWithBackgroundImage > video {
     display: grid;
     grid-template: 1fr / 1fr;
     place-items: start;
-    height: calc(100dvh - 50px - 30px - 40px);
+    height: calc(
+      100dvh - var(--m-nav-height) - var(--m-buttons-height) -
+        var(--body-padding) * 2
+    );
     justify-content: flex-start;
     width: 100%;
     position: relative;
@@ -346,30 +353,29 @@ div.videoWithBackgroundImage > video {
     grid-row: 1 / 1;
   }
 
-  div.projectContent > div.floatContainer {
-    width: calc(100dvw - 40px);
-    height: calc(100dvh - 50px - 30px - 40px - 50px);
-    position: sticky;
-    left: 20px;
-    bottom: 0;
-    flex-shrink: 0;
-    z-index: 999;
-  }
-
   article div.imagery {
     transform: unset;
     display: flex;
-    height: calc(100dvh - 50px - 30px - 40px - 50px);
+    height: calc(
+      100dvh - var(--m-nav-height) - var(--m-buttons-height) -
+        var(--body-padding) * 2 - var(--m-closed-drawer-height)
+    );
     overflow: hidden;
   }
 
   article div.imagery > div {
-    height: calc(100dvh - 50px - 30px - 40px - 50px);
+    height: calc(
+      100dvh - var(--m-nav-height) - var(--m-buttons-height) -
+        var(--body-padding) * 2 - var(--m-closed-drawer-height)
+    );
     width: calc(100dvw - 40px);
     flex-shrink: 0;
     overflow: hidden;
     position: relative;
-    grid-template-columns: repeat(10, calc((100dvw - 40px) / 10));
+    grid-template-columns: repeat(
+      10,
+      calc((100dvw - var(--body-padding) * 2) / 10)
+    );
   }
 
   div.blurBorderImage > :first-child {
@@ -429,7 +435,7 @@ div.videoWithBackgroundImage > video {
     padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    width: calc(100vw - 80px);
+    width: calc(100vw - var(--body-padding) * 2 - 40px);
     background-color: #ffffff;
     z-index: 999;
     align-self: end;
@@ -449,15 +455,6 @@ div.videoWithBackgroundImage > video {
     z-index: 99;
     margin-left: 20px;
     margin-right: 20px;
-  }
-
-  #tempImageryPadding {
-    grid-row: 1;
-    width: 20px;
-    height: calc(100dvh - 50px - 30px - 40px - 50px);
-    object-fit: cover;
-    margin-top: 0;
-    transform: scaleX(2) translateX(-25%);
   }
 
   span.bt {
