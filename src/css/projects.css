@@ -379,11 +379,11 @@ div.videoWithBackgroundImage > video {
 
   div.blurBorderImage > :nth-child(2) {
     grid-row: 1;
-    grid-column-start: 2;
-    grid-column-end: 10;
-    width: 100%;
+    grid-column: 3 / 9;
+    height: 70%;
     z-index: 50;
     align-self: center;
+    object-fit: cover;
   }
 
   div.clipBox {
