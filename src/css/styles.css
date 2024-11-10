@@ -6,16 +6,15 @@
 @font-face {
   font-family: "Helvetica";
   src: url("../../assets/fonts/Helvetica.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-  font-family: "Helvetica-Bold";
+  font-family: "Helvetica";
   src: url("../../assets/fonts/Helvetica-Bold.woff") format("woff");
-}
-
-@font-face {
-  font-family: "helvetica-light";
-  src: url("../../assets/fonts/helvetica-light.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
