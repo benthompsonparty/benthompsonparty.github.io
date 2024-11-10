@@ -37,6 +37,8 @@ div.content {
   margin-bottom: 4em;
   height: 3em;
   grid-row: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .projectTitle > .bt {
@@ -65,6 +67,8 @@ p {
   font-weight: 400;
   line-height: 120%;
   text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .subtitle {
@@ -89,6 +93,8 @@ span.caption {
   bottom: calc(var(--caption-overhang-y) + var(--body-text-size) / 2);
   right: calc(var(--caption-overhang-x) * -1);
   height: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   z-index: 99999;
 }

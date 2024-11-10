@@ -80,6 +80,8 @@ h1 {
   display: flex;
   justify-self: center;
   grid-row: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h2 {
@@ -96,6 +98,8 @@ h2 {
   font-size: 12px;
   font-family: times-new-roman, serif;
   transform: translateY(3em);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .videoContainer {
@@ -157,6 +161,8 @@ a {
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a.arrowLink {
