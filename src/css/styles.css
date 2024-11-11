@@ -88,6 +88,8 @@ h1 {
   display: flex;
   justify-self: center;
   grid-row: 1;
+  letter-spacing: -0.23px;
+  font-weight: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -104,6 +106,7 @@ h2 {
   mix-blend-mode: difference;
   font-size: 12px;
   font-family: times-new-roman, serif;
+  font-weight: normal;
   transform: translateY(3em);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
