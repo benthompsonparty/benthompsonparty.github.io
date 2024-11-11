@@ -20,6 +20,25 @@ const initElements = () => {
 
 export const isMobile = window.matchMedia("(orientation: portrait)");
 
+const onClickOutside = (elements, callback) => {
+  const outsideClickListener = (event) => {
+    const clickIsOutsideElement = (element) => {
+      return !element.contains(event.target);
+    };
+
+    if (elements.every(clickIsOutsideElement)) {
+      callback();
+      removeClickListener();
+    }
+  };
+
+  const removeClickListener = () => {
+    document.removeEventListener("click", outsideClickListener);
+  };
+
+  document.addEventListener("click", outsideClickListener);
+};
+
 const m_activateProjectsTab = () => {
   elements.projectsButton.classList.add("primary");
   elements.projectsButton.classList.remove("secondary");
@@ -72,6 +91,13 @@ const m_onAboutClick = () => {
     m_activateAboutTab();
     m_deactivateProjectsTab();
     m_deactivateContactTab();
+    onClickOutside(
+      [elements.about, elements.aboutButton, elements.contactButton],
+      () => {
+        m_activateProjectsTab();
+        m_deactivateAboutTab();
+      },
+    );
   }
 };
 
@@ -81,6 +107,13 @@ const m_onContactClick = () => {
     m_activateContactTab();
     m_deactivateProjectsTab();
     m_deactivateAboutTab();
+    onClickOutside(
+      [elements.contact, elements.contactButton, elements.aboutButton],
+      () => {
+        m_activateProjectsTab();
+        m_deactivateContactTab();
+      },
+    );
   }
 };
 
@@ -102,6 +135,7 @@ const d_onAboutClick = () => {
     d_closeAbout();
   } else {
     d_openAbout();
+    onClickOutside([elements.about, elements.aboutButton], d_closeAbout);
   }
 };
 
@@ -123,6 +157,7 @@ const d_onContactClick = () => {
     d_closeContact();
   } else {
     d_openContact();
+    onClickOutside([elements.contact, elements.contactButton], d_closeContact);
   }
 };
 
