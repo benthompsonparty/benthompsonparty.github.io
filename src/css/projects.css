@@ -2,10 +2,6 @@ nav a {
   color: #666666;
 }
 
-nav a:hover {
-  color: #666666;
-}
-
 nav a.active {
   color: #000000;
   font-weight: 700;
