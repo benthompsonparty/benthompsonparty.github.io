@@ -1,6 +1,6 @@
 export const fadeOut = (el) => {
   (function fade() {
-    if ((el.style.opacity -= 0.05) <= 0) {
+    if ((el.style.opacity -= 0.1) <= 0) {
       el.classList.add("hidden");
     } else {
       requestAnimationFrame(fade);
@@ -13,7 +13,7 @@ export const fadeIn = (el, targetOpacity = 1) => {
   el.classList.remove("hidden");
   (function fade() {
     let val = parseFloat(el.style.opacity);
-    if (!((val += 0.05) > targetOpacity)) {
+    if (!((val += 0.1) > targetOpacity)) {
       el.style.opacity = val;
       requestAnimationFrame(fade);
     }
