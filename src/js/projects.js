@@ -25,8 +25,9 @@ const initElements = () => {
 let isAutoScrolling = true;
 
 // ==== Settings ====
+// Set to zero pixels per second to turn off autoscroll
 const d_autoScrollPixelsPerSecond = 40;
-const m_autoScrollPixelsPerSecond = 20;
+const m_autoScrollPixelsPerSecond = 0;
 // ==================
 
 const _d_autoScrollPeriodMs = 1000 / d_autoScrollPixelsPerSecond;
@@ -193,9 +194,9 @@ const initInfiniteScroll = () => {
 
 const initAutoScroll = () => {
   if (isMobile.matches) {
-    m_autoScroll();
+    m_autoScrollPixelsPerSecond && m_autoScroll();
   } else {
-    d_autoScroll();
+    d_autoScrollPixelsPerSecond && d_autoScroll();
   }
 };
 
