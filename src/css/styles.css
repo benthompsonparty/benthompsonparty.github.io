@@ -79,19 +79,28 @@ body::-webkit-scrollbar {
 
 h1 {
   grid-column: 1 / -1;
-  font-family: ArialBold, sans-serif;
-  text-transform: uppercase;
-  font-size: var(--title-size);
-  z-index: 99;
-  mix-blend-mode: difference;
-  color: #ffffff;
   display: flex;
   justify-self: center;
   grid-row: 1;
+  mix-blend-mode: difference;
+  z-index: 99;
+  font-family: ArialBold, sans-serif;
+  text-transform: uppercase;
+  font-size: var(--title-size);
+  color: #ffffff;
   letter-spacing: -0.23px;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1 > a {
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  color: inherit;
+  text-transform: inherit;
+  text-decoration: inherit;
 }
 
 h2 {
