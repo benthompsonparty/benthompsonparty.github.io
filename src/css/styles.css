@@ -136,6 +136,7 @@ h2 {
 .blurOverlay {
   content: "";
   backdrop-filter: blur(140px);
+  -webkit-backdrop-filter: blur(140px);
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -260,6 +261,7 @@ div.popover {
   border-radius: var(--border-radius);
   background: rgb(18, 18, 18, 0.75);
   backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   position: fixed;
   z-index: 9999999;
 }
