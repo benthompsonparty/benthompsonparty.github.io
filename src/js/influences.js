@@ -3,10 +3,14 @@ const isMobile = window.matchMedia("(orientation: portrait)");
 let highestZ = 1000;
 
 let elements = {
+  centerImage: null,
+  draggableElements: null,
   cursor: null,
 };
 
 const initElements = () => {
+  elements.centerImage = document.querySelector(".centerMeOnLoad");
+  elements.draggableElements = [...document.querySelectorAll("div#cloud > *")];
   elements.cursor = document.querySelector("#cursor");
 };
 
@@ -92,8 +96,7 @@ const initCloudCursor = () => {
 document.addEventListener("DOMContentLoaded", () => {
   initElements();
 
-  const draggableElements = [...document.querySelectorAll("div#cloud > *")];
-  draggableElements.forEach((element) => {
+  elements.draggableElements.forEach((element) => {
     const top = element.style.top || "0vh";
     const left = element.style.left || "0vw";
 
@@ -114,11 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.ondragstart = () => false;
 
   if (isMobile.matches) {
-    const centerImage = document.querySelector(".centerMeOnLoad");
-    const scrollToCenterImage = () =>
-      centerImage.scrollIntoView({ behavior: "smooth" });
-    centerImage.addEventListener("load", scrollToCenterImage);
-    if (centerImage.complete) {
+    const scrollToCenterImage = () => {
+      elements.centerImage.scrollIntoView({ behavior: "smooth" });
+    };
+    elements.centerImage.addEventListener("load", scrollToCenterImage);
+    if (elements.centerImage.complete) {
       scrollToCenterImage();
     }
   } else {
