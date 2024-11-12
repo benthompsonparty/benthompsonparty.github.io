@@ -230,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Trigger fade out
   elements.openingTitle.style.opacity = "0";
+  elements.openingTitle.querySelector("h1").style.opacity = "0";
 
   window.setTimeout(() => {
     elements.openingTitle.style.display = "none";

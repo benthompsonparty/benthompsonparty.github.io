@@ -264,6 +264,10 @@ div.videoWithBackgroundImage > video {
   transition: opacity 1s ease-in-out;
 }
 
+#openingTitle > h1 {
+  transition: opacity 0.5s ease-in-out;
+}
+
 @media screen and (orientation: portrait) {
   :root {
     --title-size: 18px;
