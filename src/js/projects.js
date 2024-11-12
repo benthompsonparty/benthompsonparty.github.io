@@ -9,6 +9,7 @@ let elements = {
   contentElement: null,
   firstArticle: null,
   lastArticle: null,
+  openingTitle: null,
 };
 
 const initElements = () => {
@@ -20,6 +21,7 @@ const initElements = () => {
   elements.contentElement = document.querySelector("div.content");
   elements.firstArticle = document.querySelector("article:first-of-type");
   elements.lastArticle = document.querySelector("article:last-of-type");
+  elements.openingTitle = document.querySelector("#openingTitle");
 };
 
 let isAutoScrolling = true;
@@ -225,7 +227,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   initInfiniteScroll();
-  initAutoScroll();
+
+  // Trigger fade out
+  elements.openingTitle.style.opacity = "0";
+
+  window.setTimeout(() => {
+    elements.openingTitle.style.display = "none";
+    initAutoScroll();
+  }, 1000);
 
   console.debug("projects init complete");
 });

@@ -85,8 +85,7 @@ span.caption {
   height: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  z-index: 99999;
+  z-index: 999;
 }
 
 article {
@@ -251,11 +250,18 @@ div.videoWithBackgroundImage > video {
   }
 }
 
-#tempImageryPadding {
-  grid-column: 1 / -1;
-  height: 120px;
-  width: 100%;
-  margin-top: -20px;
+#openingTitle {
+  width: 100dvw;
+  height: 100dvh;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease-in-out;
 }
 
 @media screen and (orientation: portrait) {
@@ -465,5 +471,8 @@ div.videoWithBackgroundImage > video {
 
   h1.first > span.bt {
     display: unset;
+  }
+  #openingTitle {
+    display: none;
   }
 }
