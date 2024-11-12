@@ -11,6 +11,10 @@ h1 {
   z-index: 999999999;
 }
 
+* {
+  cursor: none;
+}
+
 div#cloudContainer {
   grid-column: 1 / -1;
   grid-row: 1 / -1;
@@ -41,7 +45,6 @@ div#cloud > * {
   position: relative;
   top: 0;
   left: 0;
-  cursor: grab;
   box-shadow: 0 0 30px 5px #222222;
   transition:
     opacity,
@@ -52,7 +55,6 @@ div#cloud > * {
 div#cloud > .dragging {
   opacity: 0.8;
   box-shadow: 0 0 30px 10px #666666;
-  cursor: grabbing;
 }
 
 p {
@@ -123,6 +125,22 @@ p#influences span {
   }
 }
 
+#cursor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: difference;
+  grid-column: 10 / 12;
+  align-self: end;
+  position: fixed;
+  top: 70%;
+  left: 70%;
+  transform: translate(-50%, calc(-50% + 10px));
+  pointer-events: none;
+  z-index: 999999999;
+}
+
 @media screen and (orientation: portrait) {
   :root {
     --title-size: 18px;
@@ -130,6 +148,10 @@ p#influences span {
 
   body {
     grid-template-rows: calc(100dvh - 50px - 30px - 40px) 50px 30px;
+  }
+
+  * {
+    cursor: auto;
   }
 
   div#cloudContainer {
@@ -157,5 +179,9 @@ p#influences span {
     grid-row: 2;
     margin-bottom: 1em;
     pointer-events: none;
+  }
+
+  #cursor {
+    display: none;
   }
 }

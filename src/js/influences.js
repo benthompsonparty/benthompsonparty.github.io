@@ -1,6 +1,14 @@
+const isMobile = window.matchMedia("(orientation: portrait)");
+
 let highestZ = 1000;
 
-const isMobile = window.matchMedia("(orientation: portrait)");
+let elements = {
+  cursor: null,
+};
+
+const initElements = () => {
+  elements.cursor = document.querySelector("#cursor");
+};
 
 // This requires the element to use relative positioning with
 // vw and vh units for its top and left properties. We update these
@@ -74,7 +82,16 @@ const addWiggleAnimation = (element) => {
   element.style.animation = `${animation} ${duration}s infinite linear`;
 };
 
+const initCloudCursor = () => {
+  window.addEventListener("mousemove", (event) => {
+    elements.cursor.style.top = `${event.clientY}px`;
+    elements.cursor.style.left = `${event.clientX}px`;
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+  initElements();
+
   const draggableElements = [...document.querySelectorAll("div#cloud > *")];
   draggableElements.forEach((element) => {
     const top = element.style.top || "0vh";
@@ -104,6 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (centerImage.complete) {
       scrollToCenterImage();
     }
+  } else {
+    initCloudCursor();
   }
 
   console.debug("influences init complete");

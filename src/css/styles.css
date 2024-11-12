@@ -239,7 +239,7 @@ a.button.open {
   color: #ffffff;
   background-color: transparent;
   opacity: 0.8;
-  z-index: 9999999999;
+  z-index: 99999999;
 }
 
 body > a#aboutButton.open {
@@ -261,7 +261,7 @@ div.popover {
   background: rgb(18, 18, 18, 0.75);
   backdrop-filter: blur(30px);
   position: fixed;
-  z-index: 999999999;
+  z-index: 9999999;
 }
 
 div.popover > div {
