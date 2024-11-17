@@ -1,5 +1,3 @@
-version: "3.4"
-
 services:
   site:
     image: bt-portfolio:local
@@ -7,17 +5,8 @@ services:
       context: .
     container_name: bt-portfolio
     volumes:
-      - ./src:/app/src
-      - ./assets:/app/assets
-      - ./index.html:/app/index.html
-      - ./influences.html:/app/influences.html
-      - ./projects.html:/app/projects.html
-      - ./package.json:/app/package.json
-      - ./package-lock.json:/app/package-lock.json
-      - ./favicon.ico:/app/favicon.ico
-      - ./favicon-16x16.png:/app/favicon-16x16.png
-      - ./favicon-32x32.png:/app/favicon-32x32.png
-      - ./site.webmanifest:/app/site.webmanifest
+      - .:/app/
+      - /app/node_modules
     environment:
       - PORT=8080
     ports:
