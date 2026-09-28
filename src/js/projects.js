@@ -10,6 +10,7 @@ let elements = {
   firstArticle: null,
   lastArticle: null,
   openingTitle: null,
+  exploraArticle: null,
 };
 
 const initElements = () => {
@@ -22,6 +23,11 @@ const initElements = () => {
   elements.firstArticle = document.querySelector("article:first-of-type");
   elements.lastArticle = document.querySelector("article:last-of-type");
   elements.openingTitle = document.querySelector("#openingTitle");
+  elements.exploraArticle = document.querySelector("#explora");
+  document.body.classList.toggle(
+    "explora-intro",
+    !window.location.hash || window.location.hash === "#explora",
+  );
 };
 
 let isAutoScrolling = true;
@@ -109,6 +115,9 @@ const d_initImageryDragScroll = (el) => {
 
 const setActiveArticle = (articleId) => {
   elements.navElements.forEach((element) => element.classList.remove("active"));
+  if (articleId !== "explora") {
+    document.body.classList.remove("explora-intro");
+  }
   const hrefOfNavElement = `#${articleId}`;
   const activeNavElement = document.querySelector(
     `a[href='${hrefOfNavElement}']`,
@@ -118,6 +127,30 @@ const setActiveArticle = (articleId) => {
 };
 
 let articleIntersections = [];
+let isExploraIntroActive = true;
+
+const updateExploraTitlePosition = () => {
+  if (!isExploraIntroActive || !elements.exploraArticle) {
+    return;
+  }
+
+  const projectTitle = elements.exploraArticle.querySelector(".projectTitle");
+  const titleOffset =
+    window.innerHeight / 2 - projectTitle.offsetHeight / 2 - 34;
+  const distanceScrolled = Math.max(
+    0,
+    -elements.exploraArticle.getBoundingClientRect().top,
+  );
+  const adjustedTitleOffset = Math.max(0, titleOffset - distanceScrolled);
+  document.documentElement.style.setProperty(
+    "--explora-title-offset",
+    `${adjustedTitleOffset}px`,
+  );
+
+  if (adjustedTitleOffset === 0) {
+    isExploraIntroActive = false;
+  }
+};
 
 const onIntersection = (entries) => {
   entries.forEach((entry) => {
@@ -227,6 +260,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   initInfiniteScroll();
+  updateExploraTitlePosition();
+  window.addEventListener("scroll", updateExploraTitlePosition, {
+    passive: true,
+  });
+  window.addEventListener("resize", updateExploraTitlePosition);
 
   // Trigger fade out
   elements.openingTitle.style.opacity = "0";

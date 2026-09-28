@@ -33,6 +33,20 @@ div.content {
   pointer-events: none;
 }
 
+@media screen and (orientation: landscape) {
+  .explora-intro .content > .projectTitle.first,
+  .explora-intro #explora .projectTitle {
+    top: 34px;
+    align-items: center;
+    transform: translateY(var(--explora-title-offset, 0px));
+  }
+}
+
+#explora .copy {
+  margin-bottom: 0;
+  text-align: left;
+}
+
 .projectTitle > .bt {
   opacity: 0;
 }
