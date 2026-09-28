@@ -32,6 +32,7 @@ jobs:
           mv *.webmanifest ./site
           mv ./src ./site
           mv ./assets ./site
+          mv ./projects ./site
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
